@@ -24,16 +24,39 @@
   top: 0;
 }
 
+.empty {
+  display: none;
+}
+
 .links-section {
   position: fixed;
-  display: none;
+  display: flex;
   flex-direction: column;
-  background-color: #3379b79a;
-  backdrop-filter: blur(1px);
+  background-color: #cccacad8;
+  background-image: url(../images/dna.png), url(../images/dna.png);
+  background-position: 0 0, 100% 100%;
+  background-size: 100px;
+  backdrop-filter: blur(3px);
+  background-repeat: no-repeat;
   height: 100vh;
   width: 100%;
   align-items: center;
   justify-content: space-around;
+  z-index: 1;
+  animation: down 1s;
+  border-end-start-radius: 100px;
+}
+
+@keyframes down {
+  0% {
+    transform: translate(100%, -100%);
+    opacity: 0;
+  }
+  
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
 }
 
 .links-section li {
@@ -41,7 +64,7 @@
   list-style: none;
   font-size: 30px;
   cursor: pointer;
-  color: #000;
+  color: #2b5c88;
 }
 
 .links-section li:hover {
@@ -51,10 +74,10 @@
 
 ul .x-mobile {
   position: absolute;
-  top: 0;
+  top: 1%;
   right: 5%;
   color: #521818;
-  font-size: 35px;
+  font-size: 20px;
 }
 
 .presentation {
@@ -67,7 +90,7 @@ ul .x-mobile {
 
 .presentation h1 {
   text-align: center;
-  font-weight: 200;
+  font-weight: 100;
   font-size: 7vw;
   color: #337ab7;
   max-width: 85%;
@@ -83,4 +106,47 @@ ul .x-mobile {
 .scroll-img {
   width: 100%;
   max-width: 1300px;
+  animation: opacity 1s;
+  z-index: 0;
+  background-color: #696969;
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.scroll-div {
+  position: relative;
+}
+
+.angle-right {
+  position: absolute;
+  right: 2%;
+  bottom: 35%;
+}
+
+.angle-left {
+  position: absolute;
+  left: 2%;
+  bottom: 35%;
+}
+
+.scroll-div button {
+  transition-duration: 0.5s;
+  cursor: pointer;
+  background: none;
+  color: #696969;
+  border: none;
+  font-size: 2em;
+}
+
+.scroll-div button:hover {
+  transition-duration: 0.5s;
+  color: #fff;
 }
