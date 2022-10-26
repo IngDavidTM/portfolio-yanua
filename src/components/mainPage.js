@@ -1,7 +1,7 @@
 import React from 'react';
 import '../stylesheets/mainPage.css';
 import dna from '../images/dna.png';
-import change from '../images/change.jpg';
+import scroll from '../images/scroll1.jpg';
 
 const Main = () => {
   return(
@@ -27,7 +27,7 @@ const Main = () => {
       <div className='presentation'>
         <h1>YANUA G. LEDESMA BRAVO</h1>
         <p>Science has allowed me to understand how life works around me and has introduced me to the investigation of new fields. I am passionate about discovering new problems and finding solutions. I am a leader, persistent, curious, and focused on issues related to public and animal health. My aspirations are the application of knowledge, with biotechnological tools, in search of common wellness.</p>
-        <img className='scroll-img' src={change} alt='change'/>
+        <img className='scroll-img' src={scroll} alt='change'/>
       </div>
     </section>
   );
