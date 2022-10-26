@@ -1,0 +1,84 @@
+.nav-mobile {
+  display: flex;
+  align-items: center;
+  color: #337ab7;
+  padding: 5px;
+  border-bottom: 1px solid #e4e4e4;
+  justify-content: space-between;
+}
+
+.logo-nav {
+  max-width: 40px;
+  padding-left: 5px;
+  cursor: pointer;
+}
+
+.hamburguer-nav {
+  font-size: 30px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.popup-mobile {
+  position: absolute;
+  top: 0;
+}
+
+.links-section {
+  position: fixed;
+  display: none;
+  flex-direction: column;
+  background-color: #3379b79a;
+  backdrop-filter: blur(1px);
+  height: 100vh;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.links-section li {
+  transition-duration: 0.5s;
+  list-style: none;
+  font-size: 30px;
+  cursor: pointer;
+  color: #000;
+}
+
+.links-section li:hover {
+  transition-duration: 0.5s;
+  color: #fff;
+}
+
+ul .x-mobile {
+  position: absolute;
+  top: 0;
+  right: 5%;
+  color: #521818;
+  font-size: 35px;
+}
+
+.presentation {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  padding: 60px 0;
+  align-items: center;
+}
+
+.presentation h1 {
+  text-align: center;
+  font-weight: 200;
+  font-size: 7vw;
+  color: #337ab7;
+}
+
+.presentation p {
+  text-align: center;
+  color: #696969;
+  padding: 0 20px;
+}
+
+.scroll-img {
+  max-width: 70%;
+  max-height: 400px;
+}
