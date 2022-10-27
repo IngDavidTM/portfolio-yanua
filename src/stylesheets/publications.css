@@ -1,0 +1,87 @@
+.publications {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  margin: 30px 0;
+  padding: 20px 0;
+}
+
+.publications-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  gap: 30px;
+  margin: 30px 0;
+  border: 1px solid #f0eeee;
+}
+
+.publications-div img {
+  transition-duration: 0.5s;
+  width: 100%;
+}
+
+.publications-div img:hover {
+  transition-duration: 0.5s;
+  transform: scale(1.1);
+}
+
+.links-paper {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  width: 100%;
+}
+
+.links-paper div {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 5px;
+}
+
+.links-paper input{
+  width: 70%;
+  max-width: 280px;
+  padding: 0 5px;
+  background: none;
+  border: none;
+}
+
+.links-paper input::selection {
+  background-color: #e2dcdc;
+  color: #337ab7;
+}
+
+.links-paper input:focus {
+  outline: none;
+}
+
+.copy {
+  transition-duration: 0.2s;
+  padding: 10px;
+  background: none;
+  border: none;
+  box-shadow: 2px 2px 4px grey;
+  cursor: pointer;
+  color: #000;
+}
+
+.copy:focus {
+  transition-duration: 0.2s;
+  box-shadow: 0 0 1px grey;
+}
+
+.links-paper a {
+  transition-duration: 0.2s;
+  text-decoration: none;
+  color: #696969;
+  padding: 5px;
+  box-shadow: 2px 2px 4px grey;
+}
+
+.links-paper a:focus {
+  transition-duration: 0.2s;
+  box-shadow: 0 0 1px grey;
+}

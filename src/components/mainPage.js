@@ -47,7 +47,7 @@ const Main = () => {
               <li className='x-mobile' onClick={clickHandlerX}>close[x]</li>
               <a href='#education' onClick={clickHandlerX}>Education <i class="fa-solid fa-school"></i></a>
               <a href='#experience' onClick={clickHandlerX}>Experience <i class="fa-solid fa-glasses"></i></a>
-              <a href='#education' onClick={clickHandlerX}>Publications <i class="fa-solid fa-sheet-plastic"></i></a>
+              <a href='#publications' onClick={clickHandlerX}>Publications <i class="fa-solid fa-sheet-plastic"></i></a>
               <a href='#education' onClick={clickHandlerX}>Contributions <i class="fa-solid fa-handshake-angle"></i></a>
               <a href='#education' onClick={clickHandlerX}>References <i class="fa-solid fa-magnifying-glass"></i></a>
               <a href='#education' onClick={clickHandlerX}>Contact Me <i class="fa-solid fa-envelopes-bulk"></i></a>
@@ -111,7 +111,7 @@ const Main = () => {
       </section>
       <section className='publications' id='publications'>
         <h2 className='h2-section'>Publications</h2>
-        <Publications />
+        <Publications num={1} image='paper1' link='https://www.mdpi.com/2076-0817/11/10/1159' pub='https://pubmed.ncbi.nlm.nih.gov/36297216/' doi='https://doi.org/10.3390/pathogens11101159'/>
       </section>
     </div>
   );
