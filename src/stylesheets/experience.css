@@ -37,8 +37,16 @@
   font-family: 'Raleway', sans-serif;
 }
 
+.hours-background {
+  border-top: 1px solid #f0eeee;
+  display: flex;
+  width: 100%;
+  padding-top: 12px;
+}
+
 .hours-background h3 {
   color: #337ab7;
+  text-align: center;
 }
 
 .experience-div h4{

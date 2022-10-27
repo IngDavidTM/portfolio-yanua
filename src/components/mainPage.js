@@ -76,8 +76,37 @@ const Main = () => {
       </section>
       <section className='experience' id='experience'>
         <h2 className='h2-section'>Professional and research experience</h2>
-        <Experience from='January 2020' to='March 2020' title='Pre-professional practices in the University of the Americas Research Laboratories' description='Isolation and microbiological and biochemical identification of colisstin resistant bacteria using microbiology and molecular biology. Quito, Ecuador' hours={166}/>
+        <Experience 
+        from='January 2020' 
+        to='March 2020' 
+        title='Pre-professional practices in the University of the Americas Research Laboratories' 
+        description='Isolation and microbiological and biochemical identification of colisstin resistant bacteria using microbiology and molecular biology. Quito, Ecuador' 
+        hours={166}
+        />
         <p><i className='fa-solid fa-chevron-down'></i></p>
+        <Experience 
+        from='January 2021' 
+        to='September 2021' 
+        title='Pre-professional practices in Zoonosis Research Institute - C.I.Z Laboratories from the Central University of Ecuador' 
+        description='Immunological diagnosis of diseases such as neospora, Q-fever and prototheca. Culture and molecular identification of prototheca, tuberculous and environmental mycobacteria. Quito, Ecuador' 
+        hours={504}
+        />
+        <p><i className='fa-solid fa-chevron-down'></i></p>
+        <Experience 
+        from='January 2021' 
+        to='February 2022' 
+        title='Pre-professional practices in the University of the Americas Research Laboratories' 
+        description='Molecular, bioinformatic and cladistic identification of non-tuberculos mycobacteria isolated from patients from Venezuela. Quito, Ecuador' 
+        hours={433}
+        />
+        <p><i className='fa-solid fa-chevron-down'></i></p>
+        <Experience 
+        from='Febrary 2022' 
+        to='Present' 
+        title='Professional practices in the University of the Americas Research Laboratories' 
+        description="Molecular and bioinformatic orchid's identification from Ecuadorian Andes and Amazon. Cattle genotyping. Quito, Ecuador" 
+        hours={'...'}
+        />
       </section>
     </div>
   );
