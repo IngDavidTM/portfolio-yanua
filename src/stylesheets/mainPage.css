@@ -59,25 +59,33 @@
   }
 }
 
-.links-section li {
+.links-section a {
   transition-duration: 0.5s;
-  list-style: none;
+  text-decoration: none;
   font-size: 30px;
   cursor: pointer;
   color: #2b5c88;
 }
 
-.links-section li:hover {
+.links-section a:hover {
   transition-duration: 0.5s;
   color: #fff;
 }
 
 ul .x-mobile {
+  transition-duration: 0.5s;
   position: absolute;
+  cursor: pointer;
+  list-style: none;
   top: 1%;
   right: 5%;
   color: #521818;
   font-size: 20px;
+}
+
+.x-mobile:hover {
+  transition-duration: 0.5s;
+  color: #fff;
 }
 
 .presentation {

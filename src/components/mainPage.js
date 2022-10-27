@@ -43,12 +43,12 @@ const Main = () => {
           <div className='popup-mobile'>
             <ul className={pop}>
               <li className='x-mobile' onClick={clickHandlerX}>close[x]</li>
-              <li>Education <i class="fa-solid fa-school"></i></li>
-              <li>Experience <i class="fa-solid fa-glasses"></i></li>
-              <li>Publications <i class="fa-solid fa-sheet-plastic"></i></li>
-              <li>Contributions <i class="fa-solid fa-handshake-angle"></i></li>
-              <li>References <i class="fa-solid fa-magnifying-glass"></i></li>
-              <li>Contact Me <i class="fa-solid fa-envelopes-bulk"></i></li>
+              <a href='#education' onClick={clickHandlerX}>Education <i class="fa-solid fa-school"></i></a>
+              <a href='#education' onClick={clickHandlerX}>Experience <i class="fa-solid fa-glasses"></i></a>
+              <a href='#education' onClick={clickHandlerX}>Publications <i class="fa-solid fa-sheet-plastic"></i></a>
+              <a href='#education' onClick={clickHandlerX}>Contributions <i class="fa-solid fa-handshake-angle"></i></a>
+              <a href='#education' onClick={clickHandlerX}>References <i class="fa-solid fa-magnifying-glass"></i></a>
+              <a href='#education' onClick={clickHandlerX}>Contact Me <i class="fa-solid fa-envelopes-bulk"></i></a>
             </ul>
           </div>
         </nav>
@@ -62,7 +62,7 @@ const Main = () => {
           </div>
         </div>
       </section>
-      <section className='education'>
+      <section className='education' id='education'>
         <Education 
         image='udla.jpg' 
         href='https://www.udla.edu.ec/' 
