@@ -1,3 +1,8 @@
+.div-main {
+  display: flex;
+  flex-direction: column;
+}
+
 .nav-mobile {
   display: flex;
   align-items: center;

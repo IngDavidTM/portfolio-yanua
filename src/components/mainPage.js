@@ -34,7 +34,7 @@ const Main = () => {
   }
 
   return(
-    <div>
+    <div className='div-main'>
       <section id='main'>
         <nav>
           <div className='nav-mobile'>
