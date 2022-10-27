@@ -6,8 +6,41 @@
 }
 
 .experience-div {
+  transition-duration: 0.7s;
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 10px;
-  max-width: 900px;
+  width: 80%;
+  max-width: 360px;
+  margin: 20px 0;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 3px 3px 6px grey;
+}
+
+.experience-div:hover {
+  transition-duration: 0.7s;
+  transform: scale(1.03);
+  box-shadow: 5px 5px 10px grey;
+}
+
+.experience-div div {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.experience-div  h3,
+.experience-div h4,
+.experience-div p {
+  font-family: 'Raleway', sans-serif;
+}
+
+.hours-background h3 {
+  color: #337ab7;
+}
+
+.experience-div h4{
+  color: #696969;
 }

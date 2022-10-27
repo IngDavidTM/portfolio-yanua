@@ -45,7 +45,7 @@ const Main = () => {
             <ul className={pop}>
               <li className='x-mobile' onClick={clickHandlerX}>close[x]</li>
               <a href='#education' onClick={clickHandlerX}>Education <i class="fa-solid fa-school"></i></a>
-              <a href='#education' onClick={clickHandlerX}>Experience <i class="fa-solid fa-glasses"></i></a>
+              <a href='#experience' onClick={clickHandlerX}>Experience <i class="fa-solid fa-glasses"></i></a>
               <a href='#education' onClick={clickHandlerX}>Publications <i class="fa-solid fa-sheet-plastic"></i></a>
               <a href='#education' onClick={clickHandlerX}>Contributions <i class="fa-solid fa-handshake-angle"></i></a>
               <a href='#education' onClick={clickHandlerX}>References <i class="fa-solid fa-magnifying-glass"></i></a>
@@ -77,6 +77,7 @@ const Main = () => {
       <section className='experience' id='experience'>
         <h2 className='h2-section'>Professional and research experience</h2>
         <Experience from='January 2020' to='March 2020' title='Pre-professional practices in the University of the Americas Research Laboratories' description='Isolation and microbiological and biochemical identification of colisstin resistant bacteria using microbiology and molecular biology. Quito, Ecuador' hours={166}/>
+        <p><i className='fa-solid fa-chevron-down'></i></p>
       </section>
     </div>
   );

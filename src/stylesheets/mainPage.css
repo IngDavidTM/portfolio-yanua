@@ -163,4 +163,6 @@ ul .x-mobile {
   border-bottom: 1px solid #ccc;
   font-size: 30px;
   color: #2b5c88;
+  text-align: center;
+  max-width: 360px;
 }
