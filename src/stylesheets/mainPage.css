@@ -158,3 +158,9 @@ ul .x-mobile {
   transition-duration: 0.5s;
   color: #fff;
 }
+
+.h2-section {
+  border-bottom: 1px solid #ccc;
+  font-size: 30px;
+  color: #2b5c88;
+}

@@ -1,3 +1,10 @@
+.education {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
 .education-div {
   display: flex;
   flex-direction: column;

@@ -63,13 +63,14 @@ const Main = () => {
         </div>
       </section>
       <section className='education' id='education'>
+        <h2 className='h2-section'>Education</h2>
         <Education 
         image='udla.jpg' 
         href='https://www.udla.edu.ec/' 
         name='University of the Americas (UDLA)' 
         degree='Degree in Biotechnology' 
         year='2022' 
-        description={['Engineer in Biotechnology', 'Senescyt register: 1040-2022-2444386']}
+        description={['Biotechnology Engineer', 'Senescyt register: 1040-2022-2444386']}
         />
       </section>
     </div>
