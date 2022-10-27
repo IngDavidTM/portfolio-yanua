@@ -76,7 +76,7 @@ const Main = () => {
       </section>
       <section className='experience' id='experience'>
         <h2 className='h2-section'>Professional and research experience</h2>
-        <Experience />
+        <Experience from='January 2020' to='March 2020' title='Pre-professional practices in the University of the Americas Research Laboratories' description='Isolation and microbiological and biochemical identification of colisstin resistant bacteria using microbiology and molecular biology. Quito, Ecuador' hours={166}/>
       </section>
     </div>
   );
