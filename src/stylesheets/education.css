@@ -5,9 +5,8 @@
   gap: 20px;
   padding: 20px 0;
   margin: 30px 0;
-  background-color: #eeededef;
   background-image: url(../images/background.png), url(../images/background180.png);
-  background-size: 120px, 120px;
+  background-size: 100px, 100px;
   background-position: 100% 0, 0 100%;
   background-repeat: no-repeat;
   max-width: 1500px;
