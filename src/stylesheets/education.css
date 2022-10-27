@@ -1,0 +1,45 @@
+.education-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.education-div a {
+  display: flex;
+  justify-content: center;
+}
+
+.education img {
+  transition-duration: 0.5s;
+  width: 80%;
+  max-width: 700px;
+  cursor: pointer;
+}
+
+.education img:hover {
+  transition-duration: 0.5s;
+  opacity: 0.7;
+}
+
+.education-div h2 {
+  color: #000;
+  text-align: center;
+}
+
+.education-div h3 {
+  font-weight: 500;
+  color: #337ab7;
+}
+
+.education-div div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 70px;
+}
+
+.education-div p {
+  color: #696969;
+}
