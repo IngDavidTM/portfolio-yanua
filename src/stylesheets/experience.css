@@ -5,6 +5,10 @@
   gap: 20px;
 }
 
+.experience img {
+  max-width: 80px;
+}
+
 .experience-div {
   transition-duration: 0.7s;
   display: flex;

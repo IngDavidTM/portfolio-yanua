@@ -3,6 +3,7 @@ import '../stylesheets/mainPage.css';
 import dna from '../images/dna.png';
 import Education from './education';
 import Experience from './experience';
+import Publications from './publications';
 
 const Main = () => {
   const [image, setImage] = useState(1);
@@ -83,7 +84,7 @@ const Main = () => {
         description='Isolation and microbiological and biochemical identification of colisstin resistant bacteria using microbiology and molecular biology. Quito, Ecuador' 
         hours={166}
         />
-        <p><i className='fa-solid fa-chevron-down'></i></p>
+        <img src={dna} alt='dna' />
         <Experience 
         from='January 2021' 
         to='September 2021' 
@@ -91,7 +92,7 @@ const Main = () => {
         description='Immunological diagnosis of diseases such as neospora, Q-fever and prototheca. Culture and molecular identification of prototheca, tuberculous and environmental mycobacteria. Quito, Ecuador' 
         hours={504}
         />
-        <p><i className='fa-solid fa-chevron-down'></i></p>
+        <img src={dna} alt='dna' />
         <Experience 
         from='January 2021' 
         to='February 2022' 
@@ -99,7 +100,7 @@ const Main = () => {
         description='Molecular, bioinformatic and cladistic identification of non-tuberculos mycobacteria isolated from patients from Venezuela. Quito, Ecuador' 
         hours={433}
         />
-        <p><i className='fa-solid fa-chevron-down'></i></p>
+        <img src={dna} alt='dna' />
         <Experience 
         from='Febrary 2022' 
         to='Present' 
@@ -107,6 +108,10 @@ const Main = () => {
         description="Molecular and bioinformatic orchid's identification from Ecuadorian Andes and Amazon. Cattle genotyping. Quito, Ecuador" 
         hours={'...'}
         />
+      </section>
+      <section className='publications' id='publications'>
+        <h2 className='h2-section'>Publications</h2>
+        <Publications />
       </section>
     </div>
   );
