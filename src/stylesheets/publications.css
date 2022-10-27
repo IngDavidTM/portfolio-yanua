@@ -73,6 +73,11 @@
   box-shadow: 0 0 1px grey;
 }
 
+.copy:hover {
+  transition-duration: 0.2s;
+  box-shadow: 0 0 1px grey;
+}
+
 .links-paper a {
   transition-duration: 0.2s;
   text-decoration: none;
@@ -82,6 +87,11 @@
 }
 
 .links-paper a:focus {
+  transition-duration: 0.2s;
+  box-shadow: 0 0 1px grey;
+}
+
+.links-paper a:hover {
   transition-duration: 0.2s;
   box-shadow: 0 0 1px grey;
 }
