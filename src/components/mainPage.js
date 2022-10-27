@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../stylesheets/mainPage.css';
 import dna from '../images/dna.png';
 import Education from './education';
+import Experience from './experience';
 
 const Main = () => {
   const [image, setImage] = useState(1);
@@ -72,6 +73,10 @@ const Main = () => {
         year='2022' 
         description={['Biotechnology Engineer', 'Senescyt register: 1040-2022-2444386']}
         />
+      </section>
+      <section className='experience' id='experience'>
+        <h2 className='h2-section'>Professional and research experience</h2>
+        <Experience />
       </section>
     </div>
   );
