@@ -171,3 +171,58 @@ ul .x-mobile {
   text-align: center;
   max-width: 360px;
 }
+
+.nav-desktop {
+  display: none;
+  align-items: center;
+  color: #696969;
+  padding: 5px 20px;
+  border-bottom: 1px solid #f0eeee;
+  justify-content: space-between;
+}
+
+.links-desktop {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+
+.links-desktop a {
+  transition-duration: 0.5s;
+  text-decoration: none;
+  color: #2b5c88;
+}
+
+.links-desktop a:hover {
+  transition-duration: 0.5s;
+  color: #fff;
+}
+
+@media screen and (min-width: 768px) {
+  .nav-mobile {
+    display: none;
+  }
+
+  .popup-mobile {
+    display: none;
+  }
+
+  .nav-desktop {
+    display: flex;
+  }
+
+  .presentation {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .presentation h1,
+  .presentation p {
+    max-width: 40%;
+    text-align: left;
+  }
+
+  .presentation h1 {
+    font-size: 40px;
+  }
+}
