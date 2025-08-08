@@ -19,14 +19,14 @@
   max-width: 360px;
   margin: 20px 0;
   padding: 20px;
-  background-color: #fff;
-  box-shadow: 3px 3px 6px grey;
+  background-color: var(--surface-color);
+  box-shadow: 3px 3px 6px var(--shadow-color);
 }
 
 .experience-div:hover {
   transition-duration: 0.7s;
   transform: scale(1.03);
-  box-shadow: 5px 5px 10px grey;
+  box-shadow: 5px 5px 10px var(--shadow-color);
 }
 
 .experience-div div {
@@ -42,17 +42,17 @@
 }
 
 .hours-background {
-  border-top: 1px solid #f0eeee;
+  border-top: 1px solid var(--border-color);
   display: flex;
   width: 100%;
   padding-top: 12px;
 }
 
 .hours-background h3 {
-  color: #337ab7;
+  color: var(--primary-color);
   text-align: center;
 }
 
 .experience-div h4{
-  color: #696969;
+  color: var(--text-color);
 }

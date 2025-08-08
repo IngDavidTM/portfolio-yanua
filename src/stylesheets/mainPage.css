@@ -1,14 +1,17 @@
 .div-main {
   display: flex;
   flex-direction: column;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
 .nav-mobile {
   display: flex;
   align-items: center;
-  color: #696969;
+  color: var(--text-color);
   padding: 5px;
-  border-bottom: 1px solid #f0eeee;
+  border-bottom: 1px solid var(--border-color);
   justify-content: space-between;
 }
 
@@ -37,7 +40,7 @@
   position: fixed;
   display: flex;
   flex-direction: column;
-  background-color: #cccacad8;
+  background-color: var(--surface-color);
   background-image: url(../images/dna.png), url(../images/dna.png);
   background-position: 0 0, 100% 100%;
   background-size: 100px;
@@ -69,12 +72,12 @@
   text-decoration: none;
   font-size: 30px;
   cursor: pointer;
-  color: #2b5c88;
+  color: var(--primary-color);
 }
 
 .links-section a:hover {
   transition-duration: 0.5s;
-  color: #fff;
+  color: var(--text-color);
 }
 
 ul .x-mobile {
@@ -84,13 +87,13 @@ ul .x-mobile {
   list-style: none;
   top: 1%;
   right: 5%;
-  color: #521818;
+  color: var(--primary-color);
   font-size: 20px;
 }
 
 .x-mobile:hover {
   transition-duration: 0.5s;
-  color: #fff;
+  color: var(--text-color);
 }
 
 .presentation {
@@ -105,14 +108,14 @@ ul .x-mobile {
   text-align: center;
   font-weight: 100;
   font-size: 7vw;
-  color: #337ab7;
+  color: var(--primary-color);
   max-width: 85%;
   line-height: 1.2em;
 }
 
 .presentation p {
   text-align: center;
-  color: #696969;
+  color: var(--text-color);
   max-width: 85%;
 }
 
@@ -121,7 +124,7 @@ ul .x-mobile {
   max-width: 1300px;
   animation: opacity 1s;
   z-index: 0;
-  background-color: #696969;
+  background-color: var(--text-color);
 }
 
 @keyframes opacity {
@@ -154,20 +157,20 @@ ul .x-mobile {
   transition-duration: 0.5s;
   cursor: pointer;
   background: none;
-  color: #696969;
+  color: var(--text-color);
   border: none;
   font-size: 2em;
 }
 
 .scroll-div button:hover {
   transition-duration: 0.5s;
-  color: #fff;
+  color: var(--primary-color);
 }
 
 .h2-section {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid var(--border-color);
   font-size: 30px;
-  color: #2b5c88;
+  color: var(--primary-color);
   text-align: center;
   max-width: 360px;
 }
@@ -175,9 +178,9 @@ ul .x-mobile {
 .nav-desktop {
   display: none;
   align-items: center;
-  color: #696969;
+  color: var(--text-color);
   padding: 5px 20px;
-  border-bottom: 1px solid #f0eeee;
+  border-bottom: 1px solid var(--border-color);
   justify-content: space-between;
 }
 
@@ -190,12 +193,12 @@ ul .x-mobile {
 .links-desktop a {
   transition-duration: 0.5s;
   text-decoration: none;
-  color: #2b5c88;
+  color: var(--primary-color);
 }
 
 .links-desktop a:hover {
   transition-duration: 0.5s;
-  color: #fff;
+  color: var(--text-color);
 }
 
 @media screen and (min-width: 768px) {

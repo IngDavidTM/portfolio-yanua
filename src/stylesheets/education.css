@@ -5,7 +5,7 @@
   gap: 20px;
   padding: 20px 0;
   margin: 30px 0;
-  background-color: #fff;
+  background-color: var(--surface-color);
   background-image: url(../images/background.png), url(../images/background180.png);
   background-size: 100px, 100px;
   background-position: 100% 0, 0 100%;
@@ -40,13 +40,13 @@
 }
 
 .education-div h2 {
-  color: #000;
+  color: var(--text-color);
   text-align: center;
 }
 
 .education-div h3 {
   font-weight: 500;
-  color: #337ab7;
+  color: var(--primary-color);
 }
 
 .education-div div {
@@ -56,5 +56,5 @@
 }
 
 .education-div p {
-  color: #696969;
+  color: var(--text-color);
 }
