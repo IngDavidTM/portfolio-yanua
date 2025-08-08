@@ -1,0 +1,60 @@
+.education {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 0;
+  margin: 30px 0;
+  background-color: #fff;
+  background-image: url(../images/background.png), url(../images/background180.png);
+  background-size: 100px, 100px;
+  background-position: 100% 0, 0 100%;
+  background-repeat: no-repeat;
+  width: 100%;
+  align-self: center;
+}
+
+.education-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.education-div a {
+  display: flex;
+  justify-content: center;
+}
+
+.education img {
+  transition-duration: 0.5s;
+  width: 80%;
+  max-width: 700px;
+  cursor: pointer;
+}
+
+.education img:hover {
+  transition-duration: 0.5s;
+  opacity: 0.7;
+}
+
+.education-div h2 {
+  color: #000;
+  text-align: center;
+}
+
+.education-div h3 {
+  font-weight: 500;
+  color: #337ab7;
+}
+
+.education-div div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.education-div p {
+  color: #696969;
+}
