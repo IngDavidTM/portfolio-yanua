@@ -4,6 +4,9 @@ import dna from '../images/dna.png';
 import Education from './education';
 import Experience from './experience';
 import Publications from './publications';
+import Contributions from './contributions';
+import References from './references';
+import ContactMe from './contactMe';
 
 const Main = () => {
   const [image, setImage] = useState(1);
@@ -42,15 +45,26 @@ const Main = () => {
             <p>Yanua Portfolio</p>
             <div className='hamburguer-nav' onClick={clickHandler}><i className='fa-solid fa-bars'></i></div>
           </div>
+          <div className='nav-desktop'>
+            <img className='logo-nav' src={dna} alt='logo'/>
+            <ul className='links-desktop'>
+              <li><a href='#education'>Education</a></li>
+              <li><a href='#experience'>Experience</a></li>
+              <li><a href='#publications'>Publications</a></li>
+              <li><a href='#contributions'>Contributions</a></li>
+              <li><a href='#references'>References</a></li>
+              <li><a href='#contact'>Contact Me</a></li>
+            </ul>
+          </div>
           <div className='popup-mobile'>
             <ul className={pop}>
               <li className='x-mobile' onClick={clickHandlerX}>close[x]</li>
               <a href='#education' onClick={clickHandlerX}>Education <i class="fa-solid fa-school"></i></a>
               <a href='#experience' onClick={clickHandlerX}>Experience <i class="fa-solid fa-glasses"></i></a>
               <a href='#publications' onClick={clickHandlerX}>Publications <i class="fa-solid fa-sheet-plastic"></i></a>
-              <a href='#education' onClick={clickHandlerX}>Contributions <i class="fa-solid fa-handshake-angle"></i></a>
-              <a href='#education' onClick={clickHandlerX}>References <i class="fa-solid fa-magnifying-glass"></i></a>
-              <a href='#education' onClick={clickHandlerX}>Contact Me <i class="fa-solid fa-envelopes-bulk"></i></a>
+              <a href='#contributions' onClick={clickHandlerX}>Contributions <i class="fa-solid fa-handshake-angle"></i></a>
+              <a href='#references' onClick={clickHandlerX}>References <i class="fa-solid fa-magnifying-glass"></i></a>
+              <a href='#contact' onClick={clickHandlerX}>Contact Me <i class="fa-solid fa-envelopes-bulk"></i></a>
             </ul>
           </div>
         </nav>
@@ -112,6 +126,18 @@ const Main = () => {
       <section className='publications' id='publications'>
         <h2 className='h2-section'>Publications</h2>
         <Publications num={1} image='paper1' link='https://www.mdpi.com/2076-0817/11/10/1159' pub='https://pubmed.ncbi.nlm.nih.gov/36297216/' doi='https://doi.org/10.3390/pathogens11101159'/>
+      </section>
+      <section className='contributions' id='contributions'>
+        <h2 className='h2-section'>Contributions</h2>
+        <Contributions />
+      </section>
+      <section className='references' id='references'>
+        <h2 className='h2-section'>References</h2>
+        <References />
+      </section>
+      <section className='contact' id='contact'>
+        <h2 className='h2-section'>Contact Me</h2>
+        <ContactMe />
       </section>
     </div>
   );
