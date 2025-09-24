@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../stylesheets/mainPage.css';
 import dna from '../images/dna.png';
-import ContactMe from './ContactMe';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Main = () => {
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
   const [currentImage, setCurrentImage] = useState(1);
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
@@ -18,19 +17,33 @@ const Main = () => {
   };
 
   const scrollToSection = (sectionId) => {
-    // Handle education, experience, and publications navigation with routing
-    if (sectionId === 'education' || sectionId === 'experience' || sectionId === 'publications') {
-      setActiveSection(sectionId);
-      setIsMenuOpen(false);
+    setIsMenuOpen(false);
+
+    // Handle navigation to dedicated pages
+    if (sectionId === 'education') {
+      navigate('/education');
       return;
     }
 
-    // Handle other sections with scroll
+    if (sectionId === 'experience') {
+      navigate('/experience');
+      return;
+    }
+
+    if (sectionId === 'publications') {
+      navigate('/publications');
+      return;
+    }
+
+    if (sectionId === 'contact') {
+      navigate('/contact');
+      return;
+    }
+
+    // Handle scroll within the main page
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
-      setActiveSection(sectionId);
-      setIsMenuOpen(false);
     }
   };
 
@@ -44,7 +57,6 @@ const Main = () => {
         if (element) {
           const { offsetTop, offsetHeight } = element;
           if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section);
             break;
           }
         }
@@ -138,28 +150,28 @@ const Main = () => {
         <nav className={`sidebar ${isMenuOpen ? 'open' : ''}`}>
           <div className='nav-items'>
             <button
-              className={`nav-item ${activeSection === 'main' ? 'active' : ''}`}
+              className='nav-item active'
               onClick={() => scrollToSection('main')}
             >
               Home
             </button>
             <Link
               to="/education"
-              className={`nav-item ${activeSection === 'education' ? 'active' : ''}`}
+              className='nav-item'
               onClick={() => setIsMenuOpen(false)}
             >
               Education
             </Link>
             <Link
               to="/experience"
-              className={`nav-item ${activeSection === 'experience' ? 'active' : ''}`}
+              className='nav-item'
               onClick={() => setIsMenuOpen(false)}
             >
               Experience
             </Link>
             <Link
               to="/publications"
-              className={`nav-item ${activeSection === 'publications' ? 'active' : ''}`}
+              className='nav-item'
               onClick={() => setIsMenuOpen(false)}
             >
               Publications
