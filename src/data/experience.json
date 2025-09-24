@@ -1,0 +1,30 @@
+[
+  {
+    "id": "udla-labs-2020",
+    "from": "January 2020",
+    "to": "March 2020",
+    "title": "Pre-professional practices in the University of the Americas Research Laboratories",
+    "description": "Isolation and microbiological and biochemical identification of colisstin resistant bacteria using microbiology and molecular biology. Quito, Ecuador"
+  },
+  {
+    "id": "ciz-labs-2021",
+    "from": "January 2021",
+    "to": "September 2021",
+    "title": "Pre-professional practices in Zoonosis Research Institute - C.I.Z Laboratories from the Central University of Ecuador",
+    "description": "Immunological diagnosis of diseases such as neospora, Q-fever and prototheca. Culture and molecular identification of prototheca, tuberculous and environmental mycobacteria. Quito, Ecuador"
+  },
+  {
+    "id": "udla-labs-2021-2022",
+    "from": "January 2021",
+    "to": "February 2022",
+    "title": "Pre-professional practices in the University of the Americas Research Laboratories",
+    "description": "Molecular, bioinformatic and cladistic identification of non-tuberculos mycobacteria isolated from patients from Venezuela. Quito, Ecuador"
+  },
+  {
+    "id": "udla-current",
+    "from": "February 2022",
+    "to": "Present",
+    "title": "Professional practices in the University of the Americas Research Laboratories",
+    "description": "Molecular and bioinformatic orchid's identification from Ecuadorian Andes and Amazon. Cattle genotyping. Quito, Ecuador"
+  }
+]

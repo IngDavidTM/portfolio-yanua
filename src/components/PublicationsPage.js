@@ -3,6 +3,7 @@ import '../stylesheets/mainPage.css';
 import '../stylesheets/publications.css';
 import { Link } from 'react-router-dom';
 import dna from '../images/dna.png';
+import publicationsData from '../data/publications.json';
 
 const PublicationsPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -113,81 +114,78 @@ const PublicationsPage = () => {
 
           <div className='publications-content'>
             <div className='publications-grid'>
-              <div className='publication-card-horizontal'>
-                <div className='publication-cover'>
-                  <div className='publication-cover-text'>
-                    <div className='journal-icon-large'>📄</div>
-                    <div className='publication-year-badge'>2022</div>
-                    <div className='cover-title'>Pathogens</div>
-                    <div className='cover-subtitle'>Scientific Journal</div>
-                  </div>
-                </div>
-
-                <div className='publication-details'>
-                  <div className='publication-header-info'>
-                    <div className='publication-journal-horizontal'>
-                      <span className='journal-badge'>Pathogens</span>
-                      <span className='publisher-badge'>MDPI</span>
+              {publicationsData.map((publication) => (
+                <div key={publication.id} className='publication-card-horizontal'>
+                  <div className='publication-cover'>
+                    <div className='publication-cover-text'>
+                      <div className='journal-icon-large'>📄</div>
+                      <div className='publication-year-badge'>{publication.year}</div>
+                      <div className='cover-title'>{publication.journal}</div>
+                      <div className='cover-subtitle'>Scientific Journal</div>
                     </div>
                   </div>
 
-                  <h3 className='publication-title-horizontal'>
-                    The Re-Identification of Previously Unidentifiable Clinical
-                    Non-Tuberculous Mycobacterial Isolates Shows Great Species
-                    Diversity and the Presence of Other Acid-Fast Genera
-                  </h3>
+                  <div className='publication-details'>
+                    <div className='publication-header-info'>
+                      <div className='publication-journal-horizontal'>
+                        <span className='journal-badge'>{publication.journal}</span>
+                        <span className='publisher-badge'>{publication.publisher}</span>
+                      </div>
+                    </div>
 
-                  <div className='publication-authors-horizontal'>
-                    <div className='authors-list'>
-                      <span className='lead-author'>Yanua Ledesma</span><sup>1†</sup>,
-                      Gustavo Echeverria<sup>2,3†</sup>,
-                      Franklin E. Claro-Almea<sup>4†</sup>,
-                      Douglas Silva<sup>4†</sup>,
-                      Salomé Guerrero-Freire<sup>1,3</sup>,
-                      Yeimy Rojas<sup>5</sup>,
-                      Carlos Bastidas-Caldes<sup>6</sup>,
-                      Juan Carlos Navarro<sup>8</sup>
-                      and Jacobus H. de Waard<sup>1,2,4†</sup>
+                    <h3 className='publication-title-horizontal'>
+                      {publication.title}
+                    </h3>
+
+                    <div className='publication-authors-horizontal'>
+                      <div className='authors-list'>
+                        {publication.authors.map((author, index) => (
+                          <React.Fragment key={index}>
+                            {index === 0 && <span className='lead-author'>{author}</span>}
+                            {index > 0 && author}
+                            <sup>{publication.affiliations[index]}</sup>
+                            {index < publication.authors.length - 1 && ', '}
+                            {index === publication.authors.length - 2 && ' and '}
+                          </React.Fragment>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className='publication-abstract'>
+                      <p className='abstract-text'>
+                        {publication.abstract}
+                      </p>
+                    </div>
+
+                    <div className='publication-actions-horizontal'>
+                      <a
+                        href={publication.links.article}
+                        target='_blank'
+                        rel='noreferrer'
+                        className='action-btn primary'
+                      >
+                        <span>📄</span>
+                        Read Paper
+                      </a>
+                      <a
+                        href={publication.links.pubmed}
+                        target='_blank'
+                        rel='noreferrer'
+                        className='action-btn secondary'
+                      >
+                        PubMed
+                      </a>
+                      <button
+                        className='action-btn tertiary'
+                        onClick={() => copyToClipboard(publication.doi)}
+                      >
+                        <span>📋</span>
+                        Copy DOI
+                      </button>
                     </div>
                   </div>
-
-                  <div className='publication-abstract'>
-                    <p className='abstract-text'>
-                      This study presents a comprehensive analysis of clinical mycobacterial isolates,
-                      demonstrating significant species diversity through advanced molecular identification
-                      techniques and revealing the presence of previously undetected acid-fast genera
-                      in clinical samples.
-                    </p>
-                  </div>
-
-                  <div className='publication-actions-horizontal'>
-                    <a
-                      href='https://www.mdpi.com/2076-0817/11/10/1159'
-                      target='_blank'
-                      rel='noreferrer'
-                      className='action-btn primary'
-                    >
-                      <span>📄</span>
-                      Read Paper
-                    </a>
-                    <a
-                      href='https://pubmed.ncbi.nlm.nih.gov/36297216/'
-                      target='_blank'
-                      rel='noreferrer'
-                      className='action-btn secondary'
-                    >
-                      PubMed
-                    </a>
-                    <button
-                      className='action-btn tertiary'
-                      onClick={() => copyToClipboard('https://doi.org/10.3390/pathogens11101159')}
-                    >
-                      <span>📋</span>
-                      Copy DOI
-                    </button>
-                  </div>
                 </div>
-              </div>
+              ))}
             </div>
           </div>
         </main>

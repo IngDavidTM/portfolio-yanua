@@ -2,34 +2,37 @@ import React from 'react';
 import '../stylesheets/experience.css';
 
 const Experience = (props) => {
-  const formatDuration = (hours) => {
-    if (hours === '...') return 'Ongoing';
+  const calculateDuration = (from, to) => {
+    if (to === 'Present') return 'Ongoing';
 
-    // Base: 160 hours = 1 month (average working hours per month)
-    const hoursPerMonth = 160;
+    const startDate = new Date(from);
+    const endDate = new Date(to);
 
-    if (hours >= hoursPerMonth) {
-      const totalMonths = Math.floor(hours / hoursPerMonth);
+    // Calculate difference in months
+    const diffTime = Math.abs(endDate - startDate);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-      if (totalMonths >= 12) {
-        const years = Math.floor(totalMonths / 12);
-        const remainingMonths = totalMonths % 12;
+    // Convert to months (approximately 30 days per month)
+    const totalMonths = Math.floor(diffDays / 30);
 
-        if (remainingMonths === 0) {
-          return `${years} year${years > 1 ? 's' : ''}`;
-        } else {
-          return `${years} year${years > 1 ? 's' : ''} ${remainingMonths} month${remainingMonths > 1 ? 's' : ''}`;
-        }
+    if (totalMonths >= 12) {
+      const years = Math.floor(totalMonths / 12);
+      const remainingMonths = totalMonths % 12;
+
+      if (remainingMonths === 0) {
+        return `${years} year${years > 1 ? 's' : ''}`;
       } else {
-        return `${totalMonths} month${totalMonths > 1 ? 's' : ''}`;
+        return `${years} year${years > 1 ? 's' : ''} ${remainingMonths} month${remainingMonths > 1 ? 's' : ''}`;
       }
+    } else if (totalMonths > 0) {
+      return `${totalMonths} month${totalMonths > 1 ? 's' : ''}`;
+    } else {
+      return `${diffDays} day${diffDays > 1 ? 's' : ''}`;
     }
-
-    return `${hours} hours`;
   };
 
-  const formatPeriod = (from, to, hours) => {
-    if (hours === '...') {
+  const formatPeriod = (from, to) => {
+    if (to === 'Present') {
       return `${from} - Present`;
     }
     return `${from} - ${to}`;
@@ -40,11 +43,11 @@ const Experience = (props) => {
       {/* Header with period and duration */}
       <div className='experience-header'>
         <div className='experience-period'>
-          {formatPeriod(props.from, props.to, props.hours)}
+          {formatPeriod(props.from, props.to)}
         </div>
         <div className='experience-duration-badge'>
           <span className='duration-icon'>⏱</span>
-          <span>{formatDuration(props.hours)}</span>
+          <span>{calculateDuration(props.from, props.to)}</span>
         </div>
       </div>
 

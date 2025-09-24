@@ -4,6 +4,7 @@ import '../stylesheets/education.css';
 import Education from './education';
 import { Link } from 'react-router-dom';
 import dna from '../images/dna.png';
+import educationData from '../data/education.json';
 
 const EducationPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -109,14 +110,17 @@ const EducationPage = () => {
         </div>
 
         <div className='education-content'>
-          <Education
-            image='udla.jpg'
-            href='https://www.udla.edu.ec/'
-            name='University of the Americas (UDLA)'
-            degree='Degree in Biotechnology'
-            year='2022'
-            description={['Biotechnology Engineer', 'Senescyt register: 1040-2022-2444386']}
-          />
+          {educationData.map((item) => (
+            <Education
+              key={item.id}
+              image={item.image}
+              href={item.href}
+              name={item.name}
+              degree={item.degree}
+              year={item.year}
+              description={item.description}
+            />
+          ))}
         </div>
       </main>
       </div>

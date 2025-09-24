@@ -4,6 +4,7 @@ import '../stylesheets/experience.css';
 import Experience from './experience';
 import { Link } from 'react-router-dom';
 import dna from '../images/dna.png';
+import experienceData from '../data/experience.json';
 
 const ExperiencePage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -110,34 +111,15 @@ const ExperiencePage = () => {
 
           <div className='experience-content'>
             <div className='experience-grid'>
-              <Experience
-                from='January 2020'
-                to='March 2020'
-                title='Pre-professional practices in the University of the Americas Research Laboratories'
-                description='Isolation and microbiological and biochemical identification of colisstin resistant bacteria using microbiology and molecular biology. Quito, Ecuador'
-                hours={480}
-              />
-              <Experience
-                from='January 2021'
-                to='September 2021'
-                title='Pre-professional practices in Zoonosis Research Institute - C.I.Z Laboratories from the Central University of Ecuador'
-                description='Immunological diagnosis of diseases such as neospora, Q-fever and prototheca. Culture and molecular identification of prototheca, tuberculous and environmental mycobacteria. Quito, Ecuador'
-                hours={1440}
-              />
-              <Experience
-                from='January 2021'
-                to='February 2022'
-                title='Pre-professional practices in the University of the Americas Research Laboratories'
-                description='Molecular, bioinformatic and cladistic identification of non-tuberculos mycobacteria isolated from patients from Venezuela. Quito, Ecuador'
-                hours={2080}
-              />
-              <Experience
-                from='February 2022'
-                to='Present'
-                title='Professional practices in the University of the Americas Research Laboratories'
-                description="Molecular and bioinformatic orchid's identification from Ecuadorian Andes and Amazon. Cattle genotyping. Quito, Ecuador"
-                hours={'...'}
-              />
+              {experienceData.map((item) => (
+                <Experience
+                  key={item.id}
+                  from={item.from}
+                  to={item.to}
+                  title={item.title}
+                  description={item.description}
+                />
+              ))}
             </div>
           </div>
         </main>
