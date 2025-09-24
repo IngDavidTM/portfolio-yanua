@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import '../stylesheets/education.css';
-import Education from './education';
+import '../stylesheets/experience.css';
+import Experience from './experience';
 import { Link } from 'react-router-dom';
 import dna from '../images/dna.png';
 
-const EducationPage = () => {
+const ExperiencePage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -28,7 +28,7 @@ const EducationPage = () => {
   }, [isMenuOpen]);
 
   return (
-    <div className='education-page'>
+    <div className='experience-page'>
       {/* Header - Same as main page */}
       <header className='header'>
         <div className='header-content'>
@@ -36,8 +36,8 @@ const EducationPage = () => {
             <img className='logo' src={dna} alt='Yanua Ledesma Logo' />
             <h1 className='logo-text'>Yanua Ledesma</h1>
           </div>
-          <div className='education-nav-section'>
-            <Link to="/" className='education-back-link'>
+          <div className='experience-nav-section'>
+            <Link to="/" className='experience-back-link'>
               ← Back to Home
             </Link>
             <button
@@ -69,16 +69,16 @@ const EducationPage = () => {
           >
             Home
           </Link>
-          <div className='nav-item active'>
-            Education
-          </div>
           <Link
-            to="/experience"
+            to="/education"
             className='nav-item'
             onClick={closeMenu}
           >
-            Experience
+            Education
           </Link>
+          <div className='nav-item active'>
+            Experience
+          </div>
           <Link
             to="/"
             className='nav-item'
@@ -113,28 +113,50 @@ const EducationPage = () => {
       <div className='main-layout'>
         {/* Main Content */}
         <main className='content'>
-        <div className='education-hero'>
-          <h1 className='education-hero-title'>Education</h1>
-          <div className='education-hero-line'></div>
-          <p className='education-hero-subtitle'>
-            My academic journey and professional development
-          </p>
-        </div>
+          <div className='experience-hero'>
+            <h1 className='experience-hero-title'>Professional & Research Experience</h1>
+            <div className='experience-hero-line'></div>
+            <p className='experience-hero-subtitle'>
+              My journey in biotechnology research and laboratory work
+            </p>
+          </div>
 
-        <div className='education-content'>
-          <Education
-            image='udla.jpg'
-            href='https://www.udla.edu.ec/'
-            name='University of the Americas (UDLA)'
-            degree='Degree in Biotechnology'
-            year='2022'
-            description={['Biotechnology Engineer', 'Senescyt register: 1040-2022-2444386']}
-          />
-        </div>
-      </main>
+          <div className='experience-content'>
+            <div className='experience-grid'>
+              <Experience
+                from='January 2020'
+                to='March 2020'
+                title='Pre-professional practices in the University of the Americas Research Laboratories'
+                description='Isolation and microbiological and biochemical identification of colisstin resistant bacteria using microbiology and molecular biology. Quito, Ecuador'
+                hours={480}
+              />
+              <Experience
+                from='January 2021'
+                to='September 2021'
+                title='Pre-professional practices in Zoonosis Research Institute - C.I.Z Laboratories from the Central University of Ecuador'
+                description='Immunological diagnosis of diseases such as neospora, Q-fever and prototheca. Culture and molecular identification of prototheca, tuberculous and environmental mycobacteria. Quito, Ecuador'
+                hours={1440}
+              />
+              <Experience
+                from='January 2021'
+                to='February 2022'
+                title='Pre-professional practices in the University of the Americas Research Laboratories'
+                description='Molecular, bioinformatic and cladistic identification of non-tuberculos mycobacteria isolated from patients from Venezuela. Quito, Ecuador'
+                hours={2080}
+              />
+              <Experience
+                from='February 2022'
+                to='Present'
+                title='Professional practices in the University of the Americas Research Laboratories'
+                description="Molecular and bioinformatic orchid's identification from Ecuadorian Andes and Amazon. Cattle genotyping. Quito, Ecuador"
+                hours={'...'}
+              />
+            </div>
+          </div>
+        </main>
       </div>
     </div>
   );
 };
 
-export default EducationPage;
+export default ExperiencePage;

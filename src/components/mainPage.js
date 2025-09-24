@@ -22,8 +22,8 @@ const Main = () => {
   };
 
   const scrollToSection = (sectionId) => {
-    // Handle education navigation with routing
-    if (sectionId === 'education') {
+    // Handle education and experience navigation with routing
+    if (sectionId === 'education' || sectionId === 'experience') {
       setActiveSection(sectionId);
       setIsMenuOpen(false);
       return;
@@ -40,7 +40,7 @@ const Main = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['main', 'experience', 'publications', 'contributions', 'references', 'contact'];
+      const sections = ['main', 'publications', 'contributions', 'references', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -154,12 +154,13 @@ const Main = () => {
             >
               Education
             </Link>
-            <button
+            <Link
+              to="/experience"
               className={`nav-item ${activeSection === 'experience' ? 'active' : ''}`}
-              onClick={() => scrollToSection('experience')}
+              onClick={() => setIsMenuOpen(false)}
             >
               Experience
-            </button>
+            </Link>
             <button
               className={`nav-item ${activeSection === 'publications' ? 'active' : ''}`}
               onClick={() => scrollToSection('publications')}
@@ -234,42 +235,6 @@ const Main = () => {
             </div>
           </section>
 
-          <section className='experience' id='experience'>
-            <div className='section-header'>
-              <h2 className='section-title'>Professional & Research Experience</h2>
-              <div className='section-line'></div>
-            </div>
-            <div className='experience-grid'>
-              <Experience
-                from='January 2020'
-                to='March 2020'
-                title='Pre-professional practices in the University of the Americas Research Laboratories'
-                description='Isolation and microbiological and biochemical identification of colisstin resistant bacteria using microbiology and molecular biology. Quito, Ecuador'
-                hours={166}
-              />
-              <Experience
-                from='January 2021'
-                to='September 2021'
-                title='Pre-professional practices in Zoonosis Research Institute - C.I.Z Laboratories from the Central University of Ecuador'
-                description='Immunological diagnosis of diseases such as neospora, Q-fever and prototheca. Culture and molecular identification of prototheca, tuberculous and environmental mycobacteria. Quito, Ecuador'
-                hours={504}
-              />
-              <Experience
-                from='January 2021'
-                to='February 2022'
-                title='Pre-professional practices in the University of the Americas Research Laboratories'
-                description='Molecular, bioinformatic and cladistic identification of non-tuberculos mycobacteria isolated from patients from Venezuela. Quito, Ecuador'
-                hours={433}
-              />
-              <Experience
-                from='February 2022'
-                to='Present'
-                title='Professional practices in the University of the Americas Research Laboratories'
-                description="Molecular and bioinformatic orchid's identification from Ecuadorian Andes and Amazon. Cattle genotyping. Quito, Ecuador"
-                hours={'...'}
-              />
-            </div>
-          </section>
 
           <section className='publications' id='publications'>
             <div className='section-header'>
