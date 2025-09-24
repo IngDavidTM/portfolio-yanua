@@ -4,6 +4,7 @@ import Main from './components/mainPage';
 import EducationPage from './components/EducationPage';
 import ExperiencePage from './components/ExperiencePage';
 import PublicationsPage from './components/PublicationsPage';
+import ContactPage from './components/ContactPage';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/education" element={<EducationPage />} />
           <Route path="/experience" element={<ExperiencePage />} />
           <Route path="/publications" element={<PublicationsPage />} />
+          <Route path="/contact" element={<ContactPage />} />
         </Routes>
       </Router>
     </div>

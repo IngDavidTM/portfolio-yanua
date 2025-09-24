@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../stylesheets/mainPage.css';
 import dna from '../images/dna.png';
-import ContactMe from './contactMe';
+import ContactMe from './ContactMe';
 import { Link } from 'react-router-dom';
 
 const Main = () => {
@@ -164,12 +164,13 @@ const Main = () => {
             >
               Publications
             </Link>
-            <button
+            <Link
+              to="/contact"
               className={`nav-item ${activeSection === 'contact' ? 'active' : ''}`}
-              onClick={() => scrollToSection('contact')}
+              onClick={() => setIsMenuOpen(false)}
             >
               Contact
-            </button>
+            </Link>
           </div>
         </nav>
 
