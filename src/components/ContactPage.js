@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import '../stylesheets/mainPage.css';
 import '../stylesheets/contact.css';
 import ContactMe from './ContactMe';
 import { Link } from 'react-router-dom';
@@ -36,8 +37,8 @@ const ContactPage = () => {
             <img className='logo' src={dna} alt='Yanua Ledesma Logo' />
             <h1 className='logo-text'>Yanua Ledesma</h1>
           </div>
-          <div className='contact-nav-section'>
-            <Link to="/" className='contact-back-link'>
+          <div className='nav-section'>
+            <Link to="/" className='back-link'>
               ← Back to Home
             </Link>
             <button

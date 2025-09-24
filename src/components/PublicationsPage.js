@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import '../stylesheets/mainPage.css';
 import '../stylesheets/publications.css';
 import { Link } from 'react-router-dom';
 import dna from '../images/dna.png';
@@ -90,7 +91,7 @@ const PublicationsPage = () => {
             Publications
           </div>
           <Link
-            to="/#contact"
+            to="/contact"
             className='nav-item'
             onClick={closeMenu}
           >

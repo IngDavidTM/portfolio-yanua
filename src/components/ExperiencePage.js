@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import '../stylesheets/mainPage.css';
 import '../stylesheets/experience.css';
 import Experience from './experience';
 import { Link } from 'react-router-dom';
@@ -87,7 +88,7 @@ const ExperiencePage = () => {
             Publications
           </Link>
           <Link
-            to="/#contact"
+            to="/contact"
             className='nav-item'
             onClick={closeMenu}
           >

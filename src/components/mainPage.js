@@ -36,7 +36,7 @@ const Main = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['main', 'contact'];
+      const sections = ['main'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -166,7 +166,7 @@ const Main = () => {
             </Link>
             <Link
               to="/contact"
-              className={`nav-item ${activeSection === 'contact' ? 'active' : ''}`}
+              className='nav-item'
               onClick={() => setIsMenuOpen(false)}
             >
               Contact
@@ -219,14 +219,6 @@ const Main = () => {
                 </div>
               </div>
             </div>
-          </section>
-
-          <section className='contact' id='contact'>
-            <div className='section-header'>
-              <h2 className='section-title'>Contact Me</h2>
-              <div className='section-line'></div>
-            </div>
-            <ContactMe />
           </section>
         </main>
       </div>

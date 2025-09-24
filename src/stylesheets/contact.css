@@ -18,6 +18,48 @@
   --error: #ef4444;
 }
 
+/* Contact Page Layout - inherits from mainPage.css */
+.contact-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--background) 0%, var(--white) 100%);
+  font-family: 'Inter', sans-serif;
+}
+
+/* Layout for ContactPage - inherits header/sidebar from mainPage.css */
+.contact-page .main-layout {
+  display: flex;
+  margin-top: 80px;
+  min-height: calc(100vh - 80px);
+}
+
+.contact-page .sidebar {
+  position: fixed;
+  left: -250px;
+  top: 80px;
+  width: 250px;
+  height: calc(100vh - 80px);
+  background: var(--white);
+  border-right: 1px solid var(--border);
+  transition: left 0.3s ease;
+  z-index: 999;
+  overflow-y: auto;
+}
+
+.contact-page .sidebar.open {
+  left: 0;
+}
+
+.contact-page .content {
+  flex: 1;
+  margin-left: 0;
+  padding: 2rem;
+  max-width: calc(100% - 20px);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .contact-container {
   max-width: 1000px;
   margin: 0 auto;
@@ -227,6 +269,30 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .contact-page .sidebar {
+    left: -250px;
+    top: 70px;
+    width: 250px;
+    height: calc(100vh - 70px);
+  }
+
+  .contact-page .sidebar.open {
+    left: 0;
+  }
+
+  .contact-page .main-layout {
+    margin-top: 70px;
+    min-height: calc(100vh - 70px);
+  }
+
+  .contact-page .content {
+    margin-left: 0;
+    max-width: 100%;
+    padding: 1rem;
+    width: 100%;
+    align-items: center;
+  }
+
   .contact-container {
     padding: 1rem;
     margin: 1rem;
@@ -286,4 +352,42 @@
   .contact-icon {
     font-size: 1.1rem;
   }
+}
+
+/* Contact Hero for dedicated page */
+.contact-hero {
+  text-align: center;
+  margin-bottom: 4rem;
+  padding: 4rem 0;
+}
+
+.contact-hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+}
+
+.contact-hero-line {
+  width: 80px;
+  height: 4px;
+  background: var(--primary-color);
+  border-radius: 2px;
+  margin: 0 auto 2rem;
+}
+
+.contact-hero-subtitle {
+  font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+  color: var(--text-light);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.contact-content-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
 }
