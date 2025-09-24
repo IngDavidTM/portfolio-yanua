@@ -1,60 +1,507 @@
-.education {
+/* Education Page Styles */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+:root {
+  --primary-color: #2563eb;
+  --primary-dark: #1d4ed8;
+  --secondary-color: #64748b;
+  --text-dark: #1e293b;
+  --text-light: #64748b;
+  --background: #f8fafc;
+  --white: #ffffff;
+  --border: #e2e8f0;
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 25px -3px rgb(0 0 0 / 0.1);
+  --radius: 8px;
+  --radius-lg: 12px;
+}
+
+.education-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--background) 0%, var(--white) 100%);
+  font-family: 'Inter', sans-serif;
+}
+
+/* Header - Use main page styles */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  z-index: 1000;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.logo-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.education-nav-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.education-back-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+}
+
+.education-back-link:hover {
+  background: rgba(37, 99, 235, 0.1);
+  border-color: var(--primary-color);
+}
+
+.nav-toggle {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  padding: 20px 0;
-  margin: 30px 0;
-  background-color: #fff;
-  background-image: url(../images/background.png), url(../images/background180.png);
-  background-size: 100px, 100px;
-  background-position: 100% 0, 0 100%;
-  background-repeat: no-repeat;
-  width: 100%;
-  align-self: center;
-}
-
-.education-div {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-}
-
-.education-div a {
-  display: flex;
-  justify-content: center;
-}
-
-.education img {
-  transition-duration: 0.5s;
-  width: 80%;
-  max-width: 700px;
+  gap: 4px;
   cursor: pointer;
+  padding: 8px;
+  border-radius: var(--radius);
+  transition: background-color 0.2s ease;
+  background: none;
+  border: none;
 }
 
-.education img:hover {
-  transition-duration: 0.5s;
-  opacity: 0.7;
+.nav-toggle:hover {
+  background-color: var(--background);
 }
 
-.education-div h2 {
-  color: #000;
+.nav-toggle span {
+  width: 24px;
+  height: 2px;
+  background-color: var(--text-dark);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Layout - Use main page styles */
+.main-layout {
+  display: flex;
+  margin-top: 80px;
+  min-height: calc(100vh - 80px);
+}
+
+/* Sidebar - Use main page styles */
+.sidebar {
+  position: fixed;
+  left: -250px;
+  top: 80px;
+  width: 250px;
+  height: calc(100vh - 80px);
+  background: var(--white);
+  border-right: 1px solid var(--border);
+  transition: left 0.3s ease;
+  z-index: 999;
+  overflow-y: auto;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.nav-items {
+  padding: 2rem 0;
+}
+
+.nav-item {
+  display: block;
+  width: 100%;
+  padding: 1rem 2rem;
+  text-decoration: none;
+  border: none;
+  background: none;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+}
+
+.nav-item:hover {
+  color: var(--primary-color);
+  background-color: var(--background);
+}
+
+.nav-item.active {
+  color: var(--primary-color);
+  background-color: rgba(37, 99, 235, 0.1);
+  border-left-color: var(--primary-color);
+}
+
+/* Main Content */
+.content {
+  flex: 1;
+  margin-left: 0;
+  padding: 2rem;
+  max-width: calc(100% - 20px);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Hero Section */
+.education-hero {
+  text-align: center;
+  margin-bottom: 4rem;
+  padding: 4rem 0;
+}
+
+.education-hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+}
+
+.education-hero-line {
+  width: 80px;
+  height: 4px;
+  background: var(--primary-color);
+  border-radius: 2px;
+  margin: 0 auto 2rem;
+}
+
+.education-hero-subtitle {
+  font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+  color: var(--text-light);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Content */
+.education-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+}
+
+/* Education Card */
+.education-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: clamp(2rem, 5vw, 3rem);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  max-width: 800px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.education-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color), var(--primary-dark));
+}
+
+.education-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.education-card-header {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2rem;
+  align-items: start;
+  margin-bottom: 2rem;
+}
+
+.education-logo-container {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.education-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.3s ease;
+}
+
+.education-logo:hover {
+  transform: scale(1.05);
+}
+
+.education-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.education-year-badge {
+  background: var(--primary-color);
+  color: var(--white);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  font-weight: 600;
+  align-self: flex-start;
+}
+
+.education-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  color: var(--text-dark);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.education-degree {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 500;
+  color: var(--primary-color);
+  margin: 0;
+}
+
+.education-details {
+  margin-top: 1.5rem;
+}
+
+.education-details-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.education-detail-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.education-detail-item:last-child {
+  border-bottom: none;
+}
+
+.education-detail-icon {
+  color: var(--primary-color);
+  font-weight: bold;
+  font-size: 1rem;
+  margin-top: 0.25rem;
+}
+
+.education-detail-text {
+  color: var(--text-light);
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.education-card-footer {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
   text-align: center;
 }
 
-.education-div h3 {
+.education-link {
+  display: inline-block;
+  color: var(--primary-color);
+  text-decoration: none;
   font-weight: 500;
-  color: #337ab7;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--primary-color);
+  border-radius: var(--radius);
+  transition: all 0.2s ease;
 }
 
-.education-div div {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.education-link:hover {
+  background: var(--primary-color);
+  color: var(--white);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow);
 }
 
-.education-div p {
-  color: #696969;
+/* Responsive Design - Same as main page */
+@media (max-width: 768px) {
+  .header-content {
+    padding: 1rem;
+  }
+
+  .logo-text {
+    display: none;
+  }
+
+  .sidebar {
+    left: -250px;
+    top: 70px;
+    width: 250px;
+    height: calc(100vh - 70px);
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+
+  .main-layout {
+    margin-top: 70px;
+    min-height: calc(100vh - 70px);
+  }
+
+  .content {
+    margin-left: 0;
+    max-width: 100%;
+    padding: 1rem;
+    width: 100%;
+    align-items: center;
+  }
+
+  .education-hero {
+    padding: 2rem 0;
+    margin-bottom: 3rem;
+  }
+
+  .education-hero-title {
+    font-size: 2.5rem;
+  }
+
+  .education-hero-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .education-card {
+    padding: 1.5rem;
+  }
+
+  .education-card-header {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 1.5rem;
+  }
+
+  .education-logo-container {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+  }
+
+  .nav-items {
+    padding: 1rem 0;
+  }
+
+  .nav-item {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-content {
+    padding: 0.75rem;
+  }
+
+  .logo {
+    width: 32px;
+    height: 32px;
+  }
+
+  .nav-toggle {
+    padding: 6px;
+  }
+
+  .nav-toggle span {
+    width: 20px;
+    height: 1.5px;
+  }
+
+  .sidebar {
+    left: -280px;
+    top: 60px;
+    width: 280px;
+    height: calc(100vh - 60px);
+  }
+
+  .main-layout {
+    margin-top: 60px;
+    min-height: calc(100vh - 60px);
+  }
+
+  .content {
+    padding: 0.75rem;
+  }
+
+  .education-hero {
+    padding: 1.5rem 0;
+  }
+
+  .education-hero-title {
+    font-size: 2rem;
+  }
+
+  .education-card {
+    padding: 1rem;
+  }
+
+  .education-detail-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+
+@media (min-width: 769px) {
+  .sidebar {
+    position: fixed;
+  }
+
+  .content {
+    margin-left: 0;
+    align-items: center;
+  }
 }

@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../stylesheets/mainPage.css';
 import dna from '../images/dna.png';
-import Education from './education';
 import Experience from './experience';
 import Publications from './publications';
 import Contributions from './contributions';
 import References from './references';
 import ContactMe from './contactMe';
+import { Link } from 'react-router-dom';
 
 const Main = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,6 +22,14 @@ const Main = () => {
   };
 
   const scrollToSection = (sectionId) => {
+    // Handle education navigation with routing
+    if (sectionId === 'education') {
+      setActiveSection(sectionId);
+      setIsMenuOpen(false);
+      return;
+    }
+
+    // Handle other sections with scroll
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -32,7 +40,7 @@ const Main = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['main', 'education', 'experience', 'publications', 'contributions', 'references', 'contact'];
+      const sections = ['main', 'experience', 'publications', 'contributions', 'references', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -139,12 +147,13 @@ const Main = () => {
             >
               Home
             </button>
-            <button
+            <Link
+              to="/education"
               className={`nav-item ${activeSection === 'education' ? 'active' : ''}`}
-              onClick={() => scrollToSection('education')}
+              onClick={() => setIsMenuOpen(false)}
             >
               Education
-            </button>
+            </Link>
             <button
               className={`nav-item ${activeSection === 'experience' ? 'active' : ''}`}
               onClick={() => scrollToSection('experience')}
@@ -223,20 +232,6 @@ const Main = () => {
                 </div>
               </div>
             </div>
-          </section>
-          <section className='education' id='education'>
-            <div className='section-header'>
-              <h2 className='section-title'>Education</h2>
-              <div className='section-line'></div>
-            </div>
-            <Education
-              image='udla.jpg'
-              href='https://www.udla.edu.ec/'
-              name='University of the Americas (UDLA)'
-              degree='Degree in Biotechnology'
-              year='2022'
-              description={['Biotechnology Engineer', 'Senescyt register: 1040-2022-2444386']}
-            />
           </section>
 
           <section className='experience' id='experience'>
