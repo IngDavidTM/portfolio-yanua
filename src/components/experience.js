@@ -2,11 +2,6 @@ import React from 'react';
 import '../stylesheets/experience.css';
 
 const Experience = (props) => {
-  const formatDate = (dateStr) => {
-    const date = new Date(dateStr);
-    return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
-  };
-
   const formatDuration = (hours) => {
     if (hours === '...') return 'Ongoing';
 

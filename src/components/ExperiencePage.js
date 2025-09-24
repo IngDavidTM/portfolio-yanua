@@ -80,28 +80,28 @@ const ExperiencePage = () => {
             Experience
           </div>
           <Link
-            to="/"
+            to="/publications"
             className='nav-item'
             onClick={closeMenu}
           >
             Publications
           </Link>
           <Link
-            to="/"
+            to="/#contributions"
             className='nav-item'
             onClick={closeMenu}
           >
             Contributions
           </Link>
           <Link
-            to="/"
+            to="/#references"
             className='nav-item'
             onClick={closeMenu}
           >
             References
           </Link>
           <Link
-            to="/"
+            to="/#contact"
             className='nav-item'
             onClick={closeMenu}
           >

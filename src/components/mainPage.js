@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../stylesheets/mainPage.css';
 import dna from '../images/dna.png';
-import Experience from './experience';
-import Publications from './publications';
 import Contributions from './contributions';
 import References from './references';
 import ContactMe from './contactMe';
@@ -22,8 +20,8 @@ const Main = () => {
   };
 
   const scrollToSection = (sectionId) => {
-    // Handle education and experience navigation with routing
-    if (sectionId === 'education' || sectionId === 'experience') {
+    // Handle education, experience, and publications navigation with routing
+    if (sectionId === 'education' || sectionId === 'experience' || sectionId === 'publications') {
       setActiveSection(sectionId);
       setIsMenuOpen(false);
       return;
@@ -40,7 +38,7 @@ const Main = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['main', 'publications', 'contributions', 'references', 'contact'];
+      const sections = ['main', 'contributions', 'references', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -161,12 +159,13 @@ const Main = () => {
             >
               Experience
             </Link>
-            <button
+            <Link
+              to="/publications"
               className={`nav-item ${activeSection === 'publications' ? 'active' : ''}`}
-              onClick={() => scrollToSection('publications')}
+              onClick={() => setIsMenuOpen(false)}
             >
               Publications
-            </button>
+            </Link>
             <button
               className={`nav-item ${activeSection === 'contributions' ? 'active' : ''}`}
               onClick={() => scrollToSection('contributions')}
@@ -236,13 +235,6 @@ const Main = () => {
           </section>
 
 
-          <section className='publications' id='publications'>
-            <div className='section-header'>
-              <h2 className='section-title'>Publications</h2>
-              <div className='section-line'></div>
-            </div>
-            <Publications num={1} image='paper1' link='https://www.mdpi.com/2076-0817/11/10/1159' pub='https://pubmed.ncbi.nlm.nih.gov/36297216/' doi='https://doi.org/10.3390/pathogens11101159'/>
-          </section>
 
           <section className='contributions' id='contributions'>
             <div className='section-header'>
