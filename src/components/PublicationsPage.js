@@ -90,20 +90,6 @@ const PublicationsPage = () => {
             Publications
           </div>
           <Link
-            to="/#contributions"
-            className='nav-item'
-            onClick={closeMenu}
-          >
-            Contributions
-          </Link>
-          <Link
-            to="/#references"
-            className='nav-item'
-            onClick={closeMenu}
-          >
-            References
-          </Link>
-          <Link
             to="/#contact"
             className='nav-item'
             onClick={closeMenu}

@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../stylesheets/mainPage.css';
 import dna from '../images/dna.png';
-import Contributions from './contributions';
-import References from './references';
 import ContactMe from './contactMe';
 import { Link } from 'react-router-dom';
 
@@ -38,7 +36,7 @@ const Main = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['main', 'contributions', 'references', 'contact'];
+      const sections = ['main', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -167,18 +165,6 @@ const Main = () => {
               Publications
             </Link>
             <button
-              className={`nav-item ${activeSection === 'contributions' ? 'active' : ''}`}
-              onClick={() => scrollToSection('contributions')}
-            >
-              Contributions
-            </button>
-            <button
-              className={`nav-item ${activeSection === 'references' ? 'active' : ''}`}
-              onClick={() => scrollToSection('references')}
-            >
-              References
-            </button>
-            <button
               className={`nav-item ${activeSection === 'contact' ? 'active' : ''}`}
               onClick={() => scrollToSection('contact')}
             >
@@ -232,24 +218,6 @@ const Main = () => {
                 </div>
               </div>
             </div>
-          </section>
-
-
-
-          <section className='contributions' id='contributions'>
-            <div className='section-header'>
-              <h2 className='section-title'>Contributions</h2>
-              <div className='section-line'></div>
-            </div>
-            <Contributions />
-          </section>
-
-          <section className='references' id='references'>
-            <div className='section-header'>
-              <h2 className='section-title'>References</h2>
-              <div className='section-line'></div>
-            </div>
-            <References />
           </section>
 
           <section className='contact' id='contact'>
