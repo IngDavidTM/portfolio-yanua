@@ -141,8 +141,10 @@ const PublicationsPage = () => {
                       <div className='authors-list'>
                         {publication.authors.map((author, index) => (
                           <React.Fragment key={index}>
-                            {index === 0 && <span className='lead-author'>{author}</span>}
-                            {index > 0 && author}
+                            {author === 'Yanua Ledesma' || author === 'Yanua Ledesma-Bravo' ?
+                              <span className='lead-author'>{author}</span> :
+                              author
+                            }
                             <sup>{publication.affiliations[index]}</sup>
                             {index < publication.authors.length - 1 && ', '}
                             {index === publication.authors.length - 2 && ' and '}
