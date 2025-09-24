@@ -12,6 +12,7 @@ const ContactMe = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
   const [validationErrors, setValidationErrors] = useState({});
+  const [submitMessage, setSubmitMessage] = useState('');
 
   const validateField = (name, value) => {
     switch (name) {
@@ -57,43 +58,88 @@ const ContactMe = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+        const handleSubmit = async (e) => {
+          e.preventDefault();
 
-    // Validate all fields
-    const errors = {};
-    Object.keys(formData).forEach(field => {
-      const error = validateField(field, formData[field]);
-      if (error) errors[field] = error;
-    });
+          // Clear previous submit status and message
+          setSubmitStatus(null);
+          setSubmitMessage('');
 
-    if (Object.keys(errors).length > 0) {
-      setValidationErrors(errors);
-      setSubmitStatus(null);
-      return;
-    }
+          // Validate all fields
+          const errors = {};
+          Object.keys(formData).forEach(field => {
+            const error = validateField(field, formData[field]);
+            if (error) errors[field] = error;
+          });
 
-    setIsSubmitting(true);
-    setValidationErrors({});
+          if (Object.keys(errors).length > 0) {
+            setValidationErrors(errors);
+            setSubmitStatus(null);
+            return;
+          }
+
+          setIsSubmitting(true);
+          setValidationErrors({});
 
     try {
-      const response = await fetch('https://formspree.io/f/xeqypjbg', {
+      // Using Web3Forms as a reliable alternative
+      const formDataToSend = new FormData();
+      formDataToSend.append('name', formData.name);
+      formDataToSend.append('email', formData.email);
+      formDataToSend.append('subject', formData.subject);
+      formDataToSend.append('message', formData.message);
+      formDataToSend.append('access_key', '3f0ae749-a12f-4bd3-997f-d7c753b35a4b');
+      formDataToSend.append('redirect', 'false');
+
+      // Send to Web3Forms
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
+        body: formDataToSend,
+        redirect: 'follow' // Follow redirects automatically
       });
 
-      if (response.ok) {
-        setSubmitStatus('success');
-        setFormData({ name: '', email: '', subject: '', message: '' });
-        setValidationErrors({});
+      // Check if the response is successful
+      if (response.ok || response.status === 301) {
+        // Check if we were redirected to success page
+        if (response.url && response.url.includes('success')) {
+          setSubmitStatus('success');
+          setSubmitMessage('Message sent successfully! I\'ll get back to you soon.');
+          setFormData({ name: '', email: '', subject: '', message: '' });
+          setValidationErrors({});
+        } else {
+          try {
+            const result = await response.json();
+
+            // Web3Forms returns { success: true } for successful submissions
+            if (result.success) {
+              setSubmitStatus('success');
+              setSubmitMessage('Message sent successfully! I\'ll get back to you soon.');
+              setFormData({ name: '', email: '', subject: '', message: '' });
+              setValidationErrors({});
+            } else {
+              console.error('Web3Forms error:', result);
+              setSubmitStatus('error');
+              setSubmitMessage(result.message || 'There was an error sending your message. Please try again.');
+            }
+          } catch (parseError) {
+            // If we can't parse JSON but response is OK, assume success
+            console.log('Response received but couldn\'t parse JSON, assuming success');
+            setSubmitStatus('success');
+            setSubmitMessage('Message sent successfully! I\'ll get back to you soon.');
+            setFormData({ name: '', email: '', subject: '', message: '' });
+            setValidationErrors({});
+          }
+        }
       } else {
+        console.error('HTTP Error:', response.status, response.statusText);
         setSubmitStatus('error');
+        setSubmitMessage(`HTTP Error ${response.status}: ${response.statusText}`);
       }
+
     } catch (error) {
+      console.error('Network error:', error);
       setSubmitStatus('error');
+      setSubmitMessage('Network error. Please check your connection and try again.');
     }
 
     setIsSubmitting(false);
@@ -228,13 +274,13 @@ const ContactMe = () => {
 
             {submitStatus === 'success' && (
               <div className='success-message'>
-                ✅ Message sent successfully! I'll get back to you soon.
+                ✅ {submitMessage}
               </div>
             )}
 
             {submitStatus === 'error' && (
               <div className='error-message'>
-                ❌ Sorry, there was an error sending your message. Please try again or contact me directly.
+                ❌ {submitMessage}
               </div>
             )}
           </form>
