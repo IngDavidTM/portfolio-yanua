@@ -37,8 +37,8 @@ const ContactPage = () => {
             <img className='logo' src={dna} alt='Yanua Ledesma Logo' />
             <h1 className='logo-text'>Yanua Ledesma</h1>
           </div>
-          <div className='nav-section'>
-            <Link to="/" className='back-link'>
+          <div className='contact-nav-section'>
+            <Link to="/" className='contact-back-link'>
               ← Back to Home
             </Link>
             <button

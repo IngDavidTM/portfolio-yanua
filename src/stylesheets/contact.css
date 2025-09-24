@@ -25,6 +25,27 @@
   font-family: 'Inter', sans-serif;
 }
 
+.contact-nav-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.contact-back-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+}
+
+.contact-back-link:hover {
+  background: rgba(37, 99, 235, 0.1);
+  border-color: var(--primary-color);
+}
+
 /* Layout for ContactPage - inherits header/sidebar from mainPage.css */
 .contact-page .main-layout {
   display: flex;
