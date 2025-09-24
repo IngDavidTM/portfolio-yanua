@@ -88,7 +88,7 @@ const ContactMe = () => {
       formDataToSend.append('email', formData.email);
       formDataToSend.append('subject', formData.subject);
       formDataToSend.append('message', formData.message);
-      formDataToSend.append('access_key', '3f0ae749-a12f-4bd3-997f-d7c753b35a4b');
+      formDataToSend.append('access_key', '229a4832-acb5-4e76-abd9-6ad3dfbf920f');
       formDataToSend.append('redirect', 'false');
 
       // Send to Web3Forms with no-cors mode to avoid CORS issues
