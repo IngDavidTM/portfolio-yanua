@@ -11,17 +11,70 @@ const ContactMe = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+  const [validationErrors, setValidationErrors] = useState({});
+
+  const validateField = (name, value) => {
+    switch (name) {
+      case 'name':
+        if (!value.trim()) return 'Please enter your full name';
+        if (value.trim().length < 2) return 'Name must be at least 2 characters long';
+        if (!/^[a-zA-Z\s]+$/.test(value.trim())) return 'Name can only contain letters and spaces';
+        return '';
+
+      case 'email':
+        if (!value.trim()) return 'Please enter your email address';
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(value.trim())) return 'Please enter a valid email address';
+        return '';
+
+      case 'subject':
+        if (!value.trim()) return 'Please select a subject for your message';
+        return '';
+
+      case 'message':
+        if (!value.trim()) return 'Please tell me about your project or inquiry';
+        if (value.trim().length < 10) return 'Message must be at least 10 characters long';
+        if (value.trim().length > 1000) return 'Message must be less than 1000 characters';
+        return '';
+
+      default:
+        return '';
+    }
+  };
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [name]: value
+    });
+
+    // Validate field in real-time
+    const error = validateField(name, value);
+    setValidationErrors({
+      ...validationErrors,
+      [name]: error
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validate all fields
+    const errors = {};
+    Object.keys(formData).forEach(field => {
+      const error = validateField(field, formData[field]);
+      if (error) errors[field] = error;
+    });
+
+    if (Object.keys(errors).length > 0) {
+      setValidationErrors(errors);
+      setSubmitStatus(null);
+      return;
+    }
+
     setIsSubmitting(true);
+    setValidationErrors({});
 
     try {
       const response = await fetch('https://formspree.io/f/xeqypjbg', {
@@ -35,6 +88,7 @@ const ContactMe = () => {
       if (response.ok) {
         setSubmitStatus('success');
         setFormData({ name: '', email: '', subject: '', message: '' });
+        setValidationErrors({});
       } else {
         setSubmitStatus('error');
       }
@@ -82,12 +136,17 @@ const ContactMe = () => {
                 type='text'
                 id='name'
                 name='name'
-                className='form-input'
+                className={`form-input ${validationErrors.name ? 'error' : ''}`}
                 value={formData.name}
                 onChange={handleChange}
-                required
                 placeholder='Your full name'
               />
+              {validationErrors.name && (
+                <div className='validation-error'>
+                  <span className='error-icon'>⚠️</span>
+                  {validationErrors.name}
+                </div>
+              )}
             </div>
 
             <div className='form-group'>
@@ -96,12 +155,17 @@ const ContactMe = () => {
                 type='email'
                 id='email'
                 name='email'
-                className='form-input'
+                className={`form-input ${validationErrors.email ? 'error' : ''}`}
                 value={formData.email}
                 onChange={handleChange}
-                required
                 placeholder='your.email@example.com'
               />
+              {validationErrors.email && (
+                <div className='validation-error'>
+                  <span className='error-icon'>⚠️</span>
+                  {validationErrors.email}
+                </div>
+              )}
             </div>
 
             <div className='form-group'>
@@ -109,10 +173,9 @@ const ContactMe = () => {
               <select
                 id='subject'
                 name='subject'
-                className='form-select'
+                className={`form-select ${validationErrors.subject ? 'error' : ''}`}
                 value={formData.subject}
                 onChange={handleChange}
-                required
               >
                 <option value=''>Select a subject</option>
                 <option value='Collaboration'>Collaboration</option>
@@ -121,6 +184,12 @@ const ContactMe = () => {
                 <option value='Speaking Engagement'>Speaking Engagement</option>
                 <option value='Other'>Other</option>
               </select>
+              {validationErrors.subject && (
+                <div className='validation-error'>
+                  <span className='error-icon'>⚠️</span>
+                  {validationErrors.subject}
+                </div>
+              )}
             </div>
 
             <div className='form-group'>
@@ -128,13 +197,18 @@ const ContactMe = () => {
               <textarea
                 id='message'
                 name='message'
-                className='form-textarea'
+                className={`form-textarea ${validationErrors.message ? 'error' : ''}`}
                 value={formData.message}
                 onChange={handleChange}
-                required
                 placeholder='Tell me about your project or inquiry...'
                 rows='6'
               />
+              {validationErrors.message && (
+                <div className='validation-error'>
+                  <span className='error-icon'>⚠️</span>
+                  {validationErrors.message}
+                </div>
+              )}
             </div>
 
             <button
