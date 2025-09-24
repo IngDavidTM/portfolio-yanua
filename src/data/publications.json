@@ -34,5 +34,171 @@
       "pubmed": "https://pubmed.ncbi.nlm.nih.gov/36297216/"
     },
     "doi": "https://doi.org/10.3390/pathogens11101159"
+  },
+  {
+    "id": "vetsci-2022",
+    "image": "paper2",
+    "journal": "Veterinary Sciences",
+    "publisher": "MDPI",
+    "year": 2022,
+    "title": "High Prevalence of Prototheca Bovis Infection in Dairy Cattle with Chronic Mastitis in Ecuador",
+    "authors": [
+      "Maria Paula Huilca-Ibarra",
+      "David Vasco-Julio",
+      "Yanua Ledesma",
+      "Salomé Guerrero-Freire",
+      "Jeannette Zurita",
+      "Pablo Castillejo",
+      "Francisco Barceló-Blasco",
+      "Lisseth Yanez",
+      "Darwin Changoluisa",
+      "Gustavo Echeverria",
+      "Carlos Bastidas-Caldes",
+      "Jacobus H. de Waard"
+    ],
+    "affiliations": [
+      "1",
+      "1",
+      "1",
+      "1",
+      "2",
+      "3",
+      "4",
+      "4",
+      "4",
+      "2,3",
+      "1,5,6",
+      "1,2,4"
+    ],
+    "abstract": "This study identifies Prototheca bovis as the primary etiological agent of chronic mastitis in dairy cattle in Ecuador for the first time. The research demonstrates a high prevalence (15.1%) of P. bovis infection in milk samples from cows with chronic mastitis, highlighting the significant economic impact on dairy production and the need for improved diagnostic protocols in veterinary bacteriology laboratories.",
+    "links": {
+      "article": "https://www.mdpi.com/2306-7381/9/12/659",
+      "pubmed": "https://pubmed.ncbi.nlm.nih.gov/36548820/"
+    },
+    "doi": "https://doi.org/10.3390/vetsci9120659"
+  },
+  {
+    "id": "pathogens-2023",
+    "image": "paper3",
+    "journal": "Pathogens",
+    "publisher": "MDPI",
+    "year": 2023,
+    "title": "The Development of a Multiplex PCR Assay for Fast and Cost-Effective Identification of the Five Most Significant Pathogenic Prototheca Species",
+    "authors": [
+      "David Vasco-Julio",
+      "María Huilca-Ibarra",
+      "Yanua Ledesma",
+      "Gustavo Echeverria",
+      "Salomé Guerrero-Freire",
+      "Tomasz Jagielski",
+      "Carlos Bastidas-Caldes",
+      "Jacobus H. de Waard"
+    ],
+    "affiliations": [
+      "1,2,3",
+      "1",
+      "1",
+      "4,5,6",
+      "6,7",
+      "8",
+      "1,5,6",
+      "1"
+    ],
+    "abstract": "This study presents a multiplex PCR system (m-PCR) for accurate differentiation of the five most important pathogenic Prototheca species, including those associated with dairy cattle infections (P. ciferrii, P. bovis, P. blaschkeae, P. wickerhamii) and human infections (P. wickerhamii and P. cutis). The method is low-cost, using a simple heat-shock method for DNA extraction and requires only primers, Taq polymerase, agarose gel, and molecular weight marker for identification.",
+    "links": {
+      "article": "https://www.mdpi.com/2076-0817/12/8/1018",
+      "pubmed": "https://pubmed.ncbi.nlm.nih.gov/37623978/"
+    },
+    "doi": "https://doi.org/10.3390/pathogens12081018"
+  },
+  {
+    "id": "biomethods-2024",
+    "image": "paper4",
+    "journal": "Biology Methods and Protocols",
+    "publisher": "Oxford Academic",
+    "year": 2024,
+    "title": "A rapid and inexpensive 96-well DNA-extraction method from blood using silicon dioxide powder (Glassmilk)",
+    "authors": [
+      "Maria Mercedes Vásquez Bonilla",
+      "Mónica Salome Guerrero-Freire",
+      "Yanua Ledesma",
+      "Juan Carlos Laguado",
+      "Jacobus H de Waard"
+    ],
+    "affiliations": [
+      "1",
+      "1,2",
+      "1,2",
+      "1",
+      "1"
+    ],
+    "abstract": "This study presents a rapid high-throughput DNA extraction method for use with EDTA-anticoagulated blood using silicon dioxide powder (SiO₂) as a guanidine-HCl solution, referred to as 'Glassmilk'. The method utilizes a 96-well deep-well plate, enabling DNA extraction from 96 samples in under 3 hours, integrating cell lysis, washing, elution, and DNA storage within the same well, eliminating the need for DNA transfer.",
+    "links": {
+      "article": "https://academic.oup.com/biome/article/9/1/bpae079/7845257",
+      "pubmed": "https://pubmed.ncbi.nlm.nih.gov/39659671/"
+    },
+    "doi": "https://doi.org/10.1093/biome/bpae079"
+  },
+  {
+    "id": "vetsci-2025",
+    "image": "paper5",
+    "journal": "Veterinary Sciences",
+    "publisher": "MDPI",
+    "year": 2025,
+    "title": "Bovine Papillomavirus Genotypic Diversity and a Putative Novel Viral Type in Ecuador",
+    "authors": [
+      "Diego J Carvajal-Reina",
+      "Fausto Bedoya-Páez",
+      "Mónica Salomé Guerrero-Freire",
+      "Yanua Ledesma",
+      "David Vasco-Julio",
+      "Jacobus H de Waard",
+      "Armando Reyna-Bello"
+    ],
+    "affiliations": [
+      "1",
+      "2,3",
+      "2,3",
+      "2,3",
+      "4,5",
+      "3",
+      "1"
+    ],
+    "abstract": "This study investigated bovine papillomavirus (BPV) type diversity in cattle from the Province Santo Domingo de Tsáchilas in Ecuador. Warty lesions were collected from 30 cattle across eight farms. Nucleic acids were extracted using a silicon dioxide-based method, and the partial L1 gene was amplified with PCR. DNA sequences were analyzed using maximum likelihood phylogenetics, identifying ten well-known BPV types and a putative novel viral type BPVEC2024-6-22-1 belonging to the genus Xipapillomavirus.",
+    "links": {
+      "article": "https://www.mdpi.com/2306-7381/12/7/672",
+      "pubmed": "https://pubmed.ncbi.nlm.nih.gov/40711332/"
+    },
+    "doi": "https://doi.org/10.3390/vetsci12070672"
+  },
+  {
+    "id": "microorganisms-2024",
+    "image": "paper6",
+    "journal": "Microorganisms",
+    "publisher": "MDPI",
+    "year": 2024,
+    "title": "Addressing the Concern of Orange-Yellow Fungus Growth on Palm Kernel Cake: Safeguarding Dairy Cattle Diets for Mycotoxin-Producing Fungi",
+    "authors": [
+      "Carlos Bastidas-Caldes",
+      "David Vasco-Julio",
+      "Maria Huilca-Ibarra",
+      "Salomé Guerrero-Freire",
+      "Yanua Ledesma-Bravo",
+      "Jacobus H de Waard"
+    ],
+    "affiliations": [
+      "1,5",
+      "2,3,4",
+      "1",
+      "1,4",
+      "1,4",
+      "1"
+    ],
+    "abstract": "Palm kernel cake (PKC), a byproduct of palm oil extraction, serves an important role in Ecuador's animal feed industry. The emergence of yellow-orange fungal growth in PKC on some cattle farms in Ecuador sparked concerns within the cattle industry regarding a potential mycotoxin-producing fungus on this substrate. Due to the limited availability of analytical chemistry techniques in Ecuador for mycotoxin detection, we chose to isolate and identify the fungus to determine its association with mycotoxin-producing genera.",
+    "links": {
+      "article": "https://www.mdpi.com/2076-2607/12/5/937",
+      "pubmed": "https://pubmed.ncbi.nlm.nih.gov/38792767/"
+    },
+    "doi": "https://doi.org/10.3390/microorganisms12050937"
   }
 ]
