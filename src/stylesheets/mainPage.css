@@ -41,6 +41,16 @@
   box-sizing: border-box;
 }
 
+/* Text selection color (unify across browsers) */
+::selection {
+  background: rgba(37, 99, 235, 0.35); /* primary tint */
+  color: var(--white);
+}
+::-moz-selection {
+  background: rgba(37, 99, 235, 0.35);
+  color: var(--white);
+}
+
 html {
   scroll-behavior: smooth;
 }
