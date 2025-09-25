@@ -121,9 +121,6 @@ button, a {
 }
 
 /* Main Layout */
-.div-main {
-  min-height: 100vh;
-}
 
 .main-layout {
   display: flex;
@@ -516,7 +513,7 @@ section {
   }
 
   .content {
-    margin: auto;
+    margin: auto; /* avoid vertical auto margins on flex item */
     align-items: stretch;
   }
 }

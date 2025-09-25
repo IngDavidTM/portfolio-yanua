@@ -23,7 +23,6 @@
 
 /* Education Page Layout - inherits header/sidebar from mainPage.css */
 .education-page {
-  min-height: 100vh;
   background: linear-gradient(135deg, var(--background) 0%, var(--white) 100%);
   font-family: 'Inter', sans-serif;
 }
