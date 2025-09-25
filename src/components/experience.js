@@ -2,18 +2,42 @@ import React from 'react';
 import '../stylesheets/experience.css';
 
 const Experience = (props) => {
+  // Parse a "Month YYYY" string in a Safari‑safe way
+  const parseMonthYear = (str) => {
+    if (!str || typeof str !== 'string') return null;
+    const months = {
+      january: 0,
+      february: 1,
+      march: 2,
+      april: 3,
+      may: 4,
+      june: 5,
+      july: 6,
+      august: 7,
+      september: 8,
+      october: 9,
+      november: 10,
+      december: 11,
+    };
+
+    const parts = str.trim().split(/\s+/);
+    if (parts.length !== 2) return null;
+    const month = months[parts[0].toLowerCase()];
+    const year = parseInt(parts[1], 10);
+    if (month === undefined || Number.isNaN(year)) return null;
+    return { year, month };
+  };
+
   const calculateDuration = (from, to) => {
     if (to === 'Present') return 'Ongoing';
 
-    const startDate = new Date(from);
-    const endDate = new Date(to);
+    const start = parseMonthYear(from);
+    const end = parseMonthYear(to);
 
-    // Calculate difference in months
-    const diffTime = Math.abs(endDate - startDate);
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    if (!start || !end) return '';
 
-    // Convert to months (approximately 30 days per month)
-    const totalMonths = Math.floor(diffDays / 30);
+    // Exact month difference (cross‑browser, timezone‑safe)
+    const totalMonths = (end.year - start.year) * 12 + (end.month - start.month);
 
     if (totalMonths >= 12) {
       const years = Math.floor(totalMonths / 12);
@@ -21,14 +45,16 @@ const Experience = (props) => {
 
       if (remainingMonths === 0) {
         return `${years} year${years > 1 ? 's' : ''}`;
-      } else {
-        return `${years} year${years > 1 ? 's' : ''} ${remainingMonths} month${remainingMonths > 1 ? 's' : ''}`;
       }
-    } else if (totalMonths > 0) {
-      return `${totalMonths} month${totalMonths > 1 ? 's' : ''}`;
-    } else {
-      return `${diffDays} day${diffDays > 1 ? 's' : ''}`;
+      return `${years} year${years > 1 ? 's' : ''} ${remainingMonths} month${remainingMonths > 1 ? 's' : ''}`;
     }
+
+    if (totalMonths > 0) {
+      return `${totalMonths} month${totalMonths > 1 ? 's' : ''}`;
+    }
+
+    // If within the same month, show 0 months
+    return '0 months';
   };
 
   const formatPeriod = (from, to) => {
