@@ -358,6 +358,7 @@ button, a {
   display: flex;
   gap: clamp(0.75rem, 2vw, 1rem);
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .hero-image img {
@@ -455,6 +456,30 @@ button, a {
   color: var(--white);
   transform: translateY(-2px);
   box-shadow: var(--shadow-lg);
+}
+
+/* Compact variation for smaller buttons */
+.btn-compact {
+  padding: 0.5rem 0.9rem;
+  font-size: 0.875rem;
+}
+
+/* Icon-only button */
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  padding: 0;
+  border-radius: 999px;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.btn-icon svg {
+  display: block;
 }
 
 /* Sections */

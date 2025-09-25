@@ -3,6 +3,7 @@ import '../stylesheets/mainPage.css';
 import { useNavigate } from 'react-router-dom';
 import Layout from './Layout';
 import { useLanguage } from '../context/LanguageContext';
+import cvFile from '../CV/CV_Yanua_Ledesma_EN.docx';
 
 const Main = () => {
   const navigate = useNavigate();
@@ -119,6 +120,7 @@ const Main = () => {
         'Science has allowed me to understand how life works around me and has introduced me to the investigation of new fields. I am passionate about discovering new problems and finding solutions. I am a leader, persistent, curious, and focused on issues related to public and animal health. My aspirations are the application of knowledge, with biotechnological tools, in search of common wellness.',
       primaryCta: 'View My Work',
       secondaryCta: 'Get In Touch',
+      downloadCv: 'Download CV',
       slideAria: (index) => `Go to slide ${index}`,
       slideAlt: (index) => `Portfolio slide ${index}`,
     },
@@ -129,6 +131,7 @@ const Main = () => {
         'La ciencia me ha permitido comprender cómo funciona la vida a mi alrededor y me ha llevado a explorar nuevos campos de investigación. Me apasiona descubrir nuevos problemas y encontrar soluciones. Soy líder, persistente, curiosa y estoy enfocada en temas relacionados con la salud pública y animal. Mis aspiraciones se centran en aplicar el conocimiento, con herramientas biotecnológicas, en busca del bienestar común.',
       primaryCta: 'Ver mi trabajo',
       secondaryCta: 'Contáctame',
+      downloadCv: 'Descargar CV',
       slideAria: (index) => `Ir a la diapositiva ${index}`,
       slideAlt: (index) => `Diapositiva de portafolio ${index}`,
     },
@@ -151,6 +154,28 @@ const Main = () => {
               <button className='btn-secondary' onClick={() => scrollToSection('contact')}>
                 {texts.secondaryCta}
               </button>
+              <a
+                className='btn-secondary btn-icon'
+                href={cvFile}
+                download
+                target='_blank'
+                rel='noreferrer'
+                aria-label={texts.downloadCv}
+                title={texts.downloadCv}
+              >
+                <svg
+                  width='22'
+                  height='22'
+                  viewBox='0 0 24 24'
+                  fill='none'
+                  xmlns='http://www.w3.org/2000/svg'
+                  aria-hidden='true'
+                >
+                  <path d='M12 3v12' stroke='currentColor' strokeWidth='2' strokeLinecap='round'/>
+                  <path d='M7 10l5 5 5-5' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'/>
+                  <path d='M4 21h16' stroke='currentColor' strokeWidth='2' strokeLinecap='round'/>
+                </svg>
+              </a>
             </div>
           </div>
           <div className='hero-image'>

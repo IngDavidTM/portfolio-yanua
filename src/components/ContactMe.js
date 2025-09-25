@@ -11,7 +11,7 @@ const ContactMe = () => {
         description:
           "I'm always interested in new opportunities and collaborations. Whether you have questions about my work or just want to say hello, I'd love to hear from you.",
         details: {
-          email: 'yanua.ledesma.research@gmail.com',
+          email: 'yanualedesma26@gmail.com',
           location: 'Quito, Ecuador',
           role: 'Biotechnology Researcher',
         },
@@ -67,7 +67,7 @@ const ContactMe = () => {
         description:
           'Siempre estoy interesada en nuevas oportunidades y colaboraciones. Si tienes preguntas sobre mi trabajo o simplemente quieres saludar, estaré encantada de leerte.',
         details: {
-          email: 'yanua.ledesma.research@gmail.com',
+          email: 'yanualedesma26@gmail.com',
           location: 'Quito, Ecuador',
           role: 'Investigadora en Biotecnología',
         },
