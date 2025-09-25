@@ -12,7 +12,23 @@ const Main = () => {
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
   const carouselIntervalRef = useRef(null);
-  const totalImages = 4;
+  // Load all images starting with "scroll" in src/images (supports .avif/.webp/.jpg/.jpeg/.png)
+  const requireScrollImages =
+    // webpack (CRA) dynamic require context
+    require.context('../images', false, /^\.\/scroll.*\.(avif|webp|jpe?g|png)$/i);
+
+  const carouselImages = requireScrollImages
+    .keys()
+    .map((key) => ({ key, src: requireScrollImages(key) }))
+    .sort((a, b) => {
+      const an = (a.key.match(/scroll(\d+)/i) || [])[1];
+      const bn = (b.key.match(/scroll(\d+)/i) || [])[1];
+      if (an && bn) return parseInt(an, 10) - parseInt(bn, 10);
+      return a.key.localeCompare(b.key);
+    })
+    .map((i) => i.src);
+
+  const totalImages = carouselImages.length || 1;
 
   // (Menu scroll lock now handled in Layout)
 
@@ -186,7 +202,7 @@ const Main = () => {
               onTouchEnd={handleTouchEnd}
             >
               <img
-                src={require(`../images/scroll${currentImage}.jpg`)}
+                src={carouselImages[(currentImage - 1) % totalImages]}
                 alt={texts.slideAlt(currentImage)}
                 className='carousel-image'
                 draggable={false}
