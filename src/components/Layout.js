@@ -43,6 +43,14 @@ const Layout = ({ children, active = 'home', showBackLink = false }) => {
 
   const texts = copy[language] || copy.en;
 
+  const navLinks = [
+    { to: '/', key: 'home' },
+    { to: '/education', key: 'education' },
+    { to: '/experience', key: 'experience' },
+    { to: '/publications', key: 'publications' },
+    { to: '/contact', key: 'contact' },
+  ];
+
   const toggleMenu = () => setIsMenuOpen((v) => !v);
 
   // Lock background scroll when the sidebar menu is open (iOS friendly)
@@ -71,6 +79,18 @@ const Layout = ({ children, active = 'home', showBackLink = false }) => {
             <h1 className='logo-text'>Yanua Ledesma</h1>
           </div>
           <div className='header-actions'>
+            <nav className='header-nav'>
+              {navLinks.map(({ to, key }) => (
+                <Link
+                  key={key}
+                  to={to}
+                  className={`header-nav-link ${active === key ? 'active' : ''}`}
+                  onClick={closeMenu}
+                >
+                  {texts.nav[key]}
+                </Link>
+              ))}
+            </nav>
             {showBackLink && (
               <Link to='/' className='back-link' onClick={closeMenu}>
                 {texts.backHome}
@@ -85,7 +105,7 @@ const Layout = ({ children, active = 'home', showBackLink = false }) => {
               {texts.toggleText}
             </button>
             <button
-              className='nav-toggle'
+              className='nav-toggle mobile-toggle'
               onClick={toggleMenu}
               aria-expanded={isMenuOpen}
               aria-label={isMenuOpen ? texts.closeMenu : texts.openMenu}
