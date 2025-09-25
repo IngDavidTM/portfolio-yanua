@@ -1,106 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import '../stylesheets/mainPage.css';
 import '../stylesheets/education.css';
 import Education from './education';
-import { Link } from 'react-router-dom';
-import dna from '../images/dna.png';
+import Layout from './Layout';
 import educationData from '../data/education.json';
 
 const EducationPage = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  const closeMenu = () => {
-    setIsMenuOpen(false);
-  };
-
-  // Handle keyboard navigation
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape' && isMenuOpen) {
-        closeMenu();
-      }
-    };
-
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [isMenuOpen]);
-
   return (
     <div className='education-page'>
-      {/* Header - Same as main page */}
-      <header className='header'>
-        <div className='header-content'>
-          <div className='logo-section'>
-            <img className='logo' src={dna} alt='Yanua Ledesma Logo' />
-            <h1 className='logo-text'>Yanua Ledesma</h1>
-          </div>
-          <div className='education-nav-section'>
-            <Link to="/" className='education-back-link'>
-              ← Back to Home
-            </Link>
-            <button
-              className='nav-toggle'
-              onClick={toggleMenu}
-              aria-expanded={isMenuOpen}
-              aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-            >
-              <span></span>
-              <span></span>
-              <span></span>
-            </button>
-          </div>
-        </div>
-      </header>
-
-      {/* Sidebar Navigation - Same as main page */}
-      <nav
-        className={`sidebar ${isMenuOpen ? 'open' : ''}`}
-        role="navigation"
-        aria-label="Main navigation"
-        aria-hidden={!isMenuOpen}
-      >
-        <div className='nav-items'>
-          <Link
-            to="/"
-            className='nav-item'
-            onClick={closeMenu}
-          >
-            Home
-          </Link>
-          <div className='nav-item active'>
-            Education
-          </div>
-          <Link
-            to="/experience"
-            className='nav-item'
-            onClick={closeMenu}
-          >
-            Experience
-          </Link>
-          <Link
-            to="/publications"
-            className='nav-item'
-            onClick={closeMenu}
-          >
-            Publications
-          </Link>
-          <Link
-            to="/contact"
-            className='nav-item'
-            onClick={closeMenu}
-          >
-            Contact
-          </Link>
-        </div>
-      </nav>
-
-      <div className='main-layout'>
-        {/* Main Content */}
-        <main className='content'>
+      <Layout active='education' showBackLink>
         <div className='education-hero'>
           <h1 className='education-hero-title'>Education</h1>
           <div className='education-hero-line'></div>
@@ -122,8 +30,7 @@ const EducationPage = () => {
             />
           ))}
         </div>
-      </main>
-      </div>
+      </Layout>
     </div>
   );
 };

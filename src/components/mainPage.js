@@ -1,24 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../stylesheets/mainPage.css';
-import dna from '../images/dna.png';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import Layout from './Layout';
 
 const Main = () => {
   const navigate = useNavigate();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentImage, setCurrentImage] = useState(1);
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
   const carouselIntervalRef = useRef(null);
   const totalImages = 4;
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  // (Menu scroll lock now handled in Layout)
 
   const scrollToSection = (sectionId) => {
-    setIsMenuOpen(false);
-
     // Handle navigation to dedicated pages
     if (sectionId === 'education') {
       navigate('/education');
@@ -48,21 +43,7 @@ const Main = () => {
   };
 
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = ['main'];
-      const scrollPosition = window.scrollY + 100;
-
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            break;
-          }
-        }
-      }
-    };
-
+    const handleScroll = () => {};
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -128,113 +109,53 @@ const Main = () => {
     }
   };
 
-  return(
-    <div className='div-main'>
-      {/* Header */}
-      <header className='header'>
-        <div className='header-content'>
-          <div className='logo-section'>
-            <img className='logo' src={dna} alt='Yanua Ledesma Logo' />
-            <h1 className='logo-text'>Yanua Ledesma</h1>
+  return (
+    <Layout active='home' showBackLink={false}>
+      <section id='main' className='hero-section'>
+        <div className='hero-content'>
+          <div className='hero-text'>
+            <h1 className='hero-title'>Hi, I'm Yanua!</h1>
+            <h2 className='hero-subtitle'>Biotechnology Researcher & Scientist</h2>
+            <p className='hero-description'>
+              Science has allowed me to understand how life works around me and has introduced me to the investigation of new fields. I am passionate about discovering new problems and finding solutions. I am a leader, persistent, curious, and focused on issues related to public and animal health. My aspirations are the application of knowledge, with biotechnological tools, in search of common wellness.
+            </p>
+            <div className='hero-actions'>
+              <button className='btn-primary' onClick={() => scrollToSection('experience')}>
+                View My Work
+              </button>
+              <button className='btn-secondary' onClick={() => scrollToSection('contact')}>
+                Get In Touch
+              </button>
+            </div>
           </div>
-          <div className='nav-toggle' onClick={toggleMenu}>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </div>
-      </header>
-
-      <div className='main-layout'>
-        {/* Sidebar Navigation */}
-        <nav className={`sidebar ${isMenuOpen ? 'open' : ''}`}>
-          <div className='nav-items'>
-            <button
-              className='nav-item active'
-              onClick={() => scrollToSection('main')}
+          <div className='hero-image'>
+            <div
+              className='carousel-container'
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
             >
-              Home
-            </button>
-            <Link
-              to="/education"
-              className='nav-item'
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Education
-            </Link>
-            <Link
-              to="/experience"
-              className='nav-item'
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Experience
-            </Link>
-            <Link
-              to="/publications"
-              className='nav-item'
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Publications
-            </Link>
-            <Link
-              to="/contact"
-              className='nav-item'
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Contact
-            </Link>
-          </div>
-        </nav>
-
-        {/* Main Content */}
-        <main className='content'>
-          <section id='main' className='hero-section'>
-            <div className='hero-content'>
-              <div className='hero-text'>
-                <h1 className='hero-title'>Hi, I'm Yanua!</h1>
-                <h2 className='hero-subtitle'>Biotechnology Researcher & Scientist</h2>
-                <p className='hero-description'>
-                  Science has allowed me to understand how life works around me and has introduced me to the investigation of new fields. I am passionate about discovering new problems and finding solutions. I am a leader, persistent, curious, and focused on issues related to public and animal health. My aspirations are the application of knowledge, with biotechnological tools, in search of common wellness.
-                </p>
-                <div className='hero-actions'>
-                  <button className='btn-primary' onClick={() => scrollToSection('experience')}>
-                    View My Work
-                  </button>
-                  <button className='btn-secondary' onClick={() => scrollToSection('contact')}>
-                    Get In Touch
-                  </button>
-                </div>
-              </div>
-              <div className='hero-image'>
-                <div 
-                  className='carousel-container'
-                  onTouchStart={handleTouchStart}
-                  onTouchMove={handleTouchMove}
-                  onTouchEnd={handleTouchEnd}
-                >
-                  <img
-                    src={require(`../images/scroll${currentImage}.jpg`)}
-                    alt={`Portfolio slide ${currentImage}`}
-                    className='carousel-image'
-                    draggable={false}
+              <img
+                src={require(`../images/scroll${currentImage}.jpg`)}
+                alt={`Portfolio slide ${currentImage}`}
+                className='carousel-image'
+                draggable={false}
+              />
+              <div className='carousel-indicators'>
+                {Array.from({ length: totalImages }, (_, index) => (
+                  <button
+                    key={index + 1}
+                    className={`indicator ${currentImage === index + 1 ? 'active' : ''}`}
+                    onClick={() => goToImage(index + 1)}
+                    aria-label={`Go to slide ${index + 1}`}
                   />
-                  <div className='carousel-indicators'>
-                    {Array.from({ length: totalImages }, (_, index) => (
-                      <button
-                        key={index + 1}
-                        className={`indicator ${currentImage === index + 1 ? 'active' : ''}`}
-                        onClick={() => goToImage(index + 1)}
-                        aria-label={`Go to slide ${index + 1}`}
-                      />
-                    ))}
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
-          </section>
-        </main>
-      </div>
-    </div>
+          </div>
+        </div>
+      </section>
+    </Layout>
   );
 };
 

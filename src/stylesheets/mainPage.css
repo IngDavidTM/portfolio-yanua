@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
 
 :root {
+  --header-h: 80px;
   --primary-color: #2563eb;
   --primary-dark: #1d4ed8;
   --secondary-color: #64748b;
@@ -50,6 +51,11 @@ body {
   color: var(--text-dark);
   line-height: 1.6;
   overflow-x: hidden;
+}
+
+/* Improve touch behavior on iOS */
+button, a {
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Header */
@@ -121,31 +127,44 @@ body {
 
 .main-layout {
   display: flex;
-  margin-top: 80px;
-  min-height: calc(100vh - 80px);
+  margin-top: var(--header-h);
+  /* Fallback and iOS dynamic viewport */
+  min-height: calc(100vh - var(--header-h));
+  min-height: calc(100dvh - var(--header-h));
 }
 
 /* Sidebar */
 .sidebar {
   position: fixed;
-  left: -250px;
-  top: 80px;
-  width: 250px;
-  height: calc(100vh - 80px);
+  left: 0;
+  top: var(--header-h);
+  width: clamp(260px, 85vw, 320px);
+  /* Fallback for older browsers */
+  height: calc(100vh - var(--header-h));
+  /* Use dynamic viewport on iOS/Safari */
+  height: calc(100dvh - var(--header-h));
   background: var(--white);
   border-right: 1px solid var(--border);
-  transition: left 0.3s ease;
+  transition: transform 0.3s ease;
+  transform: translateX(-100%);
   z-index: 999;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
-.sidebar.open {
-  left: 0;
+.sidebar.open { transform: translateX(0); }
+
+/* Backdrop when the sidebar is open */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.35);
+  -webkit-backdrop-filter: blur(1px);
+  backdrop-filter: blur(1px);
+  z-index: 998;
 }
 
-.nav-items {
-  padding: 2rem 0;
-}
+.nav-items { padding: 0.75rem 0; }
 
 .nav-item {
   display: block;
@@ -176,7 +195,7 @@ body {
 /* Content */
 .content {
   flex: 1;
-  margin-left: 0;
+  margin: auto;
   padding: 2rem;
   max-width: calc(100% - 20px);
   width: 100%;
@@ -185,12 +204,34 @@ body {
   align-items: center;
 }
 
+/* Header actions */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.back-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+}
+
+.back-link:hover {
+  background: rgba(37, 99, 235, 0.1);
+  border-color: var(--primary-color);
+}
+
 /* Hero Section */
 .hero-section {
   padding: 0;
-  min-height: 90vh;
   display: flex;
   align-items: center;
+  margin-bottom: 0;
 }
 
 .hero-content {
@@ -386,19 +427,26 @@ section {
     display: none;
   }
 
+  :root { --header-h: 70px; }
+
   .sidebar {
-    left: -250px;
-    top: 70px;
-    width: 250px;
-    height: calc(100vh - 70px);
+    left: 0;
+    top: calc(env(safe-area-inset-top, 0px) + var(--header-h));
+    width: clamp(260px, 90vw, 360px);
+    /* Fallback */
+    height: calc(100vh - (var(--header-h) + env(safe-area-inset-top, 0px)));
+    /* iOS dynamic viewport */
+    height: calc(100dvh - (var(--header-h) + env(safe-area-inset-top, 0px)));
   }
 
-  .sidebar.open {
-    left: 0;
+  .sidebar.open { transform: translateX(0); }
+
+  .backdrop {
+    inset: 0; /* cover whole screen */
   }
 
   .content {
-    margin-left: 0;
+    margin: auto;
     max-width: 100%;
     padding: 1rem;
     width: 100%;
