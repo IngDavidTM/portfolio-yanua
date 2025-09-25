@@ -192,7 +192,7 @@ button, a {
 /* Content */
 .content {
   flex: 1;
-  margin: auto;
+  margin: 0;
   padding: 2rem;
   max-width: calc(100% - 20px);
   width: 100%;
@@ -220,6 +220,25 @@ button, a {
 
 .back-link:hover {
   background: rgba(37, 99, 235, 0.1);
+  border-color: var(--primary-color);
+}
+
+.language-toggle {
+  border: 1px solid var(--border);
+  background: var(--white);
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  letter-spacing: 0.05em;
+}
+
+.language-toggle:hover {
+  background: var(--primary-color);
+  color: var(--white);
   border-color: var(--primary-color);
 }
 
@@ -443,7 +462,7 @@ section {
   }
 
   .content {
-    margin: auto;
+    margin: 0;
     max-width: 100%;
     padding: 1rem;
     width: 100%;
@@ -498,6 +517,11 @@ section {
     padding: 0.75rem 1rem;
     font-size: 0.9rem;
   }
+
+  .language-toggle {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.7rem;
+  }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
@@ -513,7 +537,7 @@ section {
   }
 
   .content {
-    margin: auto; /* avoid vertical auto margins on flex item */
+    margin: 0;
     align-items: stretch;
   }
 }

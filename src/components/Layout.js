@@ -2,9 +2,46 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../stylesheets/mainPage.css';
 import dna from '../images/dna.png';
+import { useLanguage } from '../context/LanguageContext';
 
 const Layout = ({ children, active = 'home', showBackLink = false }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { language, toggleLanguage } = useLanguage();
+
+  const copy = {
+    en: {
+      backHome: '← Back to Home',
+      openMenu: 'Open navigation menu',
+      closeMenu: 'Close navigation menu',
+      navLabel: 'Main navigation',
+      nav: {
+        home: 'Home',
+        education: 'Education',
+        experience: 'Experience',
+        publications: 'Publications',
+        contact: 'Contact',
+      },
+      languageLabel: 'Switch to Spanish',
+      toggleText: 'ES',
+    },
+    es: {
+      backHome: '← Volver al inicio',
+      openMenu: 'Abrir menú de navegación',
+      closeMenu: 'Cerrar menú de navegación',
+      navLabel: 'Navegación principal',
+      nav: {
+        home: 'Inicio',
+        education: 'Formación',
+        experience: 'Experiencia',
+        publications: 'Publicaciones',
+        contact: 'Contacto',
+      },
+      languageLabel: 'Cambiar a inglés',
+      toggleText: 'EN',
+    },
+  };
+
+  const texts = copy[language] || copy.en;
 
   const toggleMenu = () => setIsMenuOpen((v) => !v);
 
@@ -36,14 +73,22 @@ const Layout = ({ children, active = 'home', showBackLink = false }) => {
           <div className='header-actions'>
             {showBackLink && (
               <Link to='/' className='back-link' onClick={closeMenu}>
-                ← Back to Home
+                {texts.backHome}
               </Link>
             )}
+            <button
+              type='button'
+              className='language-toggle'
+              onClick={toggleLanguage}
+              aria-label={texts.languageLabel}
+            >
+              {texts.toggleText}
+            </button>
             <button
               className='nav-toggle'
               onClick={toggleMenu}
               aria-expanded={isMenuOpen}
-              aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+              aria-label={isMenuOpen ? texts.closeMenu : texts.openMenu}
             >
               <span></span>
               <span></span>
@@ -59,24 +104,24 @@ const Layout = ({ children, active = 'home', showBackLink = false }) => {
         <nav
           className={`sidebar ${isMenuOpen ? 'open' : ''}`}
           role='navigation'
-          aria-label='Main navigation'
+          aria-label={texts.navLabel}
           aria-hidden={!isMenuOpen}
         >
           <div className='nav-items'>
             <Link to='/' className={`nav-item ${active === 'home' ? 'active' : ''}`} onClick={closeMenu}>
-              Home
+              {texts.nav.home}
             </Link>
             <Link to='/education' className={`nav-item ${active === 'education' ? 'active' : ''}`} onClick={closeMenu}>
-              Education
+              {texts.nav.education}
             </Link>
             <Link to='/experience' className={`nav-item ${active === 'experience' ? 'active' : ''}`} onClick={closeMenu}>
-              Experience
+              {texts.nav.experience}
             </Link>
             <Link to='/publications' className={`nav-item ${active === 'publications' ? 'active' : ''}`} onClick={closeMenu}>
-              Publications
+              {texts.nav.publications}
             </Link>
             <Link to='/contact' className={`nav-item ${active === 'contact' ? 'active' : ''}`} onClick={closeMenu}>
-              Contact
+              {texts.nav.contact}
             </Link>
           </div>
         </nav>
@@ -90,4 +135,3 @@ const Layout = ({ children, active = 'home', showBackLink = false }) => {
 };
 
 export default Layout;
-

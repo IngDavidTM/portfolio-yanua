@@ -37,7 +37,7 @@ const Education = (props) => {
           rel='noreferrer'
           className='education-link'
         >
-          Visit Institution →
+          {props.visitLabel}
         </a>
       </div>
     </div>

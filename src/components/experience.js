@@ -28,15 +28,25 @@ const Experience = (props) => {
     return { year, month };
   };
 
+  const yearLabels = props.durationLabels?.year || ['year', 'years'];
+  const monthLabels = props.durationLabels?.month || ['month', 'months'];
+  const ongoingLabel = props.ongoingLabel || 'Ongoing';
+
+  const pluralize = (value, labels) => {
+    const [singular, plural] = labels;
+    return `${value} ${value === 1 ? singular : plural}`;
+  };
+
   const calculateDuration = (from, to) => {
-    if (to === 'Present') return 'Ongoing';
+    if (props.isCurrent) {
+      return ongoingLabel;
+    }
 
     const start = parseMonthYear(from);
     const end = parseMonthYear(to);
 
     if (!start || !end) return '';
 
-    // Exact month difference (cross‑browser, timezone‑safe)
     const totalMonths = (end.year - start.year) * 12 + (end.month - start.month);
 
     if (totalMonths >= 12) {
@@ -44,32 +54,30 @@ const Experience = (props) => {
       const remainingMonths = totalMonths % 12;
 
       if (remainingMonths === 0) {
-        return `${years} year${years > 1 ? 's' : ''}`;
+        return pluralize(years, yearLabels);
       }
-      return `${years} year${years > 1 ? 's' : ''} ${remainingMonths} month${remainingMonths > 1 ? 's' : ''}`;
+
+      return `${pluralize(years, yearLabels)} ${pluralize(
+        remainingMonths,
+        monthLabels
+      )}`;
     }
 
     if (totalMonths > 0) {
-      return `${totalMonths} month${totalMonths > 1 ? 's' : ''}`;
+      return pluralize(totalMonths, monthLabels);
     }
 
-    // If within the same month, show 0 months
-    return '0 months';
+    return pluralize(0, monthLabels);
   };
 
-  const formatPeriod = (from, to) => {
-    if (to === 'Present') {
-      return `${from} - Present`;
-    }
-    return `${from} - ${to}`;
-  };
+  const formatPeriod = () => `${props.fromLabel} - ${props.toLabel}`;
 
   return (
     <div className='experience-div'>
       {/* Header with period and duration */}
       <div className='experience-header'>
         <div className='experience-period'>
-          {formatPeriod(props.from, props.to)}
+          {formatPeriod()}
         </div>
         <div className='experience-duration-badge'>
           <span className='duration-icon'>⏱</span>

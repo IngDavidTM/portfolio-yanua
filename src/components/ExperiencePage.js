@@ -3,18 +3,44 @@ import '../stylesheets/mainPage.css';
 import '../stylesheets/experience.css';
 import Experience from './experience';
 import Layout from './Layout';
-import experienceData from '../data/experience.json';
+import getExperienceData from '../data/experienceData';
+import { useLanguage } from '../context/LanguageContext';
 
 const ExperiencePage = () => {
+  const { language } = useLanguage();
+  const copy = {
+    en: {
+      title: 'Professional & Research Experience',
+      subtitle: 'My journey in biotechnology research and laboratory work',
+      ongoing: 'Ongoing',
+      duration: {
+        year: ['year', 'years'],
+        month: ['month', 'months'],
+        day: ['day', 'days'],
+      },
+    },
+    es: {
+      title: 'Experiencia Profesional e Investigativa',
+      subtitle: 'Mi trayectoria en investigación biotecnológica y trabajo de laboratorio',
+      ongoing: 'En curso',
+      duration: {
+        year: ['año', 'años'],
+        month: ['mes', 'meses'],
+        day: ['día', 'días'],
+      },
+    },
+  };
+
+  const texts = copy[language] || copy.en;
+  const experienceData = getExperienceData(language);
+
   return (
     <div className='experience-page'>
       <Layout active='experience' showBackLink>
         <div className='experience-hero'>
-          <h1 className='experience-hero-title'>Professional & Research Experience</h1>
+          <h1 className='experience-hero-title'>{texts.title}</h1>
           <div className='experience-hero-line'></div>
-          <p className='experience-hero-subtitle'>
-            My journey in biotechnology research and laboratory work
-          </p>
+          <p className='experience-hero-subtitle'>{texts.subtitle}</p>
         </div>
 
         <div className='experience-content'>
@@ -24,6 +50,11 @@ const ExperiencePage = () => {
                 key={item.id}
                 from={item.from}
                 to={item.to}
+                fromLabel={item.fromLabel}
+                toLabel={item.toLabel}
+                isCurrent={item.isCurrent}
+                durationLabels={texts.duration}
+                ongoingLabel={texts.ongoing}
                 title={item.title}
                 description={item.description}
               />

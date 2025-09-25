@@ -2,9 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import '../stylesheets/mainPage.css';
 import { useNavigate } from 'react-router-dom';
 import Layout from './Layout';
+import { useLanguage } from '../context/LanguageContext';
 
 const Main = () => {
   const navigate = useNavigate();
+  const { language } = useLanguage();
   const [currentImage, setCurrentImage] = useState(1);
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
@@ -109,22 +111,45 @@ const Main = () => {
     }
   };
 
+  const copy = {
+    en: {
+      heroTitle: "Hi, I'm Yanua!",
+      heroSubtitle: 'Biotechnology Researcher & Scientist',
+      heroDescription:
+        'Science has allowed me to understand how life works around me and has introduced me to the investigation of new fields. I am passionate about discovering new problems and finding solutions. I am a leader, persistent, curious, and focused on issues related to public and animal health. My aspirations are the application of knowledge, with biotechnological tools, in search of common wellness.',
+      primaryCta: 'View My Work',
+      secondaryCta: 'Get In Touch',
+      slideAria: (index) => `Go to slide ${index}`,
+      slideAlt: (index) => `Portfolio slide ${index}`,
+    },
+    es: {
+      heroTitle: '¡Hola, soy Yanua!',
+      heroSubtitle: 'Investigadora y Científica en Biotecnología',
+      heroDescription:
+        'La ciencia me ha permitido comprender cómo funciona la vida a mi alrededor y me ha llevado a explorar nuevos campos de investigación. Me apasiona descubrir nuevos problemas y encontrar soluciones. Soy líder, persistente, curiosa y estoy enfocada en temas relacionados con la salud pública y animal. Mis aspiraciones se centran en aplicar el conocimiento, con herramientas biotecnológicas, en busca del bienestar común.',
+      primaryCta: 'Ver mi trabajo',
+      secondaryCta: 'Contáctame',
+      slideAria: (index) => `Ir a la diapositiva ${index}`,
+      slideAlt: (index) => `Diapositiva de portafolio ${index}`,
+    },
+  };
+
+  const texts = copy[language] || copy.en;
+
   return (
     <Layout active='home' showBackLink={false}>
       <section id='main' className='hero-section'>
         <div className='hero-content'>
           <div className='hero-text'>
-            <h1 className='hero-title'>Hi, I'm Yanua!</h1>
-            <h2 className='hero-subtitle'>Biotechnology Researcher & Scientist</h2>
-            <p className='hero-description'>
-              Science has allowed me to understand how life works around me and has introduced me to the investigation of new fields. I am passionate about discovering new problems and finding solutions. I am a leader, persistent, curious, and focused on issues related to public and animal health. My aspirations are the application of knowledge, with biotechnological tools, in search of common wellness.
-            </p>
+            <h1 className='hero-title'>{texts.heroTitle}</h1>
+            <h2 className='hero-subtitle'>{texts.heroSubtitle}</h2>
+            <p className='hero-description'>{texts.heroDescription}</p>
             <div className='hero-actions'>
               <button className='btn-primary' onClick={() => scrollToSection('experience')}>
-                View My Work
+                {texts.primaryCta}
               </button>
               <button className='btn-secondary' onClick={() => scrollToSection('contact')}>
-                Get In Touch
+                {texts.secondaryCta}
               </button>
             </div>
           </div>
@@ -137,7 +162,7 @@ const Main = () => {
             >
               <img
                 src={require(`../images/scroll${currentImage}.jpg`)}
-                alt={`Portfolio slide ${currentImage}`}
+                alt={texts.slideAlt(currentImage)}
                 className='carousel-image'
                 draggable={false}
               />
@@ -147,7 +172,7 @@ const Main = () => {
                     key={index + 1}
                     className={`indicator ${currentImage === index + 1 ? 'active' : ''}`}
                     onClick={() => goToImage(index + 1)}
-                    aria-label={`Go to slide ${index + 1}`}
+                    aria-label={texts.slideAria(index + 1)}
                   />
                 ))}
               </div>

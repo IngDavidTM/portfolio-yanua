@@ -1,7 +1,128 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import '../stylesheets/contact.css';
+import { useLanguage } from '../context/LanguageContext';
 
 const ContactMe = () => {
+  const { language } = useLanguage();
+  const copy = useMemo(
+    () => ({
+      en: {
+        sectionTitle: 'Get In Touch',
+        description:
+          "I'm always interested in new opportunities and collaborations. Whether you have questions about my work or just want to say hello, I'd love to hear from you.",
+        details: {
+          email: 'yanua.ledesma.research@gmail.com',
+          location: 'Quito, Ecuador',
+          role: 'Biotechnology Researcher',
+        },
+        form: {
+          labels: {
+            name: 'Name *',
+            email: 'Email *',
+            subject: 'Subject *',
+            message: 'Message *',
+          },
+          placeholders: {
+            name: 'Your full name',
+            email: 'your.email@example.com',
+            message: 'Tell me about your project or inquiry...',
+          },
+          subjectOptions: [
+            { value: '', label: 'Select a subject' },
+            { value: 'Collaboration', label: 'Collaboration' },
+            { value: 'Research Inquiry', label: 'Research Inquiry' },
+            { value: 'Job Opportunity', label: 'Job Opportunity' },
+            { value: 'Speaking Engagement', label: 'Speaking Engagement' },
+            { value: 'Other', label: 'Other' },
+          ],
+          submit: 'Send Message',
+          sending: 'Sending...',
+        },
+        validation: {
+          name: {
+            required: 'Please enter your full name',
+            min: 'Name must be at least 2 characters long',
+            pattern: 'Name can only contain letters and spaces',
+          },
+          email: {
+            required: 'Please enter your email address',
+            pattern: 'Please enter a valid email address',
+          },
+          subject: {
+            required: 'Please select a subject for your message',
+          },
+          message: {
+            required: 'Please tell me about your project or inquiry',
+            min: 'Message must be at least 10 characters long',
+            max: 'Message must be less than 1000 characters',
+          },
+        },
+        feedback: {
+          success: "Message sent successfully! I'll get back to you soon.",
+          network: 'Network error. Please check your connection and try again.',
+        },
+      },
+      es: {
+        sectionTitle: 'Ponte en contacto',
+        description:
+          'Siempre estoy interesada en nuevas oportunidades y colaboraciones. Si tienes preguntas sobre mi trabajo o simplemente quieres saludar, estaré encantada de leerte.',
+        details: {
+          email: 'yanua.ledesma.research@gmail.com',
+          location: 'Quito, Ecuador',
+          role: 'Investigadora en Biotecnología',
+        },
+        form: {
+          labels: {
+            name: 'Nombre *',
+            email: 'Correo *',
+            subject: 'Asunto *',
+            message: 'Mensaje *',
+          },
+          placeholders: {
+            name: 'Tu nombre completo',
+            email: 'tu.correo@ejemplo.com',
+            message: 'Cuéntame sobre tu proyecto o consulta...',
+          },
+          subjectOptions: [
+            { value: '', label: 'Selecciona un asunto' },
+            { value: 'Collaboration', label: 'Colaboración' },
+            { value: 'Research Inquiry', label: 'Consulta de investigación' },
+            { value: 'Job Opportunity', label: 'Oportunidad laboral' },
+            { value: 'Speaking Engagement', label: 'Invitación a charla' },
+            { value: 'Other', label: 'Otro' },
+          ],
+          submit: 'Enviar mensaje',
+          sending: 'Enviando...',
+        },
+        validation: {
+          name: {
+            required: 'Ingresa tu nombre completo',
+            min: 'El nombre debe tener al menos 2 caracteres',
+            pattern: 'El nombre solo puede contener letras y espacios',
+          },
+          email: {
+            required: 'Ingresa tu correo electrónico',
+            pattern: 'Ingresa un correo electrónico válido',
+          },
+          subject: {
+            required: 'Selecciona un asunto para tu mensaje',
+          },
+          message: {
+            required: 'Cuéntame sobre tu proyecto o consulta',
+            min: 'El mensaje debe tener al menos 10 caracteres',
+            max: 'El mensaje debe tener menos de 1000 caracteres',
+          },
+        },
+        feedback: {
+          success: '¡Mensaje enviado con éxito! Te responderé muy pronto.',
+          network: 'Error de red. Revisa tu conexión e inténtalo nuevamente.',
+        },
+      },
+    }),
+    []
+  );
+
+  const texts = copy[language] || copy.en;
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -12,30 +133,30 @@ const ContactMe = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
   const [validationErrors, setValidationErrors] = useState({});
-  const [submitMessage, setSubmitMessage] = useState('');
+  const [submitMessageKey, setSubmitMessageKey] = useState(null);
 
   const validateField = (name, value) => {
     switch (name) {
       case 'name':
-        if (!value.trim()) return 'Please enter your full name';
-        if (value.trim().length < 2) return 'Name must be at least 2 characters long';
-        if (!/^[a-zA-Z\s]+$/.test(value.trim())) return 'Name can only contain letters and spaces';
+        if (!value.trim()) return texts.validation.name.required;
+        if (value.trim().length < 2) return texts.validation.name.min;
+        if (!/^[a-zA-ZÀ-ÿ\s]+$/.test(value.trim())) return texts.validation.name.pattern;
         return '';
 
       case 'email':
-        if (!value.trim()) return 'Please enter your email address';
+        if (!value.trim()) return texts.validation.email.required;
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(value.trim())) return 'Please enter a valid email address';
+        if (!emailRegex.test(value.trim())) return texts.validation.email.pattern;
         return '';
 
       case 'subject':
-        if (!value.trim()) return 'Please select a subject for your message';
+        if (!value.trim()) return texts.validation.subject.required;
         return '';
 
       case 'message':
-        if (!value.trim()) return 'Please tell me about your project or inquiry';
-        if (value.trim().length < 10) return 'Message must be at least 10 characters long';
-        if (value.trim().length > 1000) return 'Message must be less than 1000 characters';
+        if (!value.trim()) return texts.validation.message.required;
+        if (value.trim().length < 10) return texts.validation.message.min;
+        if (value.trim().length > 1000) return texts.validation.message.max;
         return '';
 
       default:
@@ -63,7 +184,7 @@ const ContactMe = () => {
 
           // Clear previous submit status and message
           setSubmitStatus(null);
-          setSubmitMessage('');
+          setSubmitMessageKey(null);
 
           // Validate all fields
           const errors = {};
@@ -101,14 +222,14 @@ const ContactMe = () => {
       // With no-cors mode, we can't read the response, but if we get here without error, assume success
       console.log('✅ Request completed successfully - email sent!');
       setSubmitStatus('success');
-      setSubmitMessage('Message sent successfully! I\'ll get back to you soon.');
+      setSubmitMessageKey('success');
       setFormData({ name: '', email: '', subject: '', message: '' });
       setValidationErrors({});
 
     } catch (error) {
       console.error('Network error:', error);
       setSubmitStatus('error');
-      setSubmitMessage('Network error. Please check your connection and try again.');
+      setSubmitMessageKey('network');
     }
 
     setIsSubmitting(false);
@@ -119,25 +240,21 @@ const ContactMe = () => {
       <div className='contact-content'>
         <div className='contact-info'>
           <div className='contact-text'>
-            <h3 className='contact-title'>Get In Touch</h3>
-            <p className='contact-description'>
-              I'm always interested in new opportunities and collaborations.
-              Whether you have questions about my work or just want to say hello,
-              I'd love to hear from you.
-            </p>
+            <h3 className='contact-title'>{texts.sectionTitle}</h3>
+            <p className='contact-description'>{texts.description}</p>
 
             <div className='contact-details'>
               <div className='contact-detail'>
                 <span className='contact-icon'>📧</span>
-                <span>yanua.ledesma.research@gmail.com</span>
+                <span>{texts.details.email}</span>
               </div>
               <div className='contact-detail'>
                 <span className='contact-icon'>📍</span>
-                <span>Quito, Ecuador</span>
+                <span>{texts.details.location}</span>
               </div>
               <div className='contact-detail'>
                 <span className='contact-icon'>🔬</span>
-                <span>Biotechnology Researcher</span>
+                <span>{texts.details.role}</span>
               </div>
             </div>
           </div>
@@ -146,7 +263,7 @@ const ContactMe = () => {
         <div className='contact-form-section'>
           <form className='contact-form' onSubmit={handleSubmit}>
             <div className='form-group'>
-              <label htmlFor='name' className='form-label'>Name *</label>
+              <label htmlFor='name' className='form-label'>{texts.form.labels.name}</label>
               <input
                 type='text'
                 id='name'
@@ -154,7 +271,7 @@ const ContactMe = () => {
                 className={`form-input ${validationErrors.name ? 'error' : ''}`}
                 value={formData.name}
                 onChange={handleChange}
-                placeholder='Your full name'
+                placeholder={texts.form.placeholders.name}
               />
               {validationErrors.name && (
                 <div className='validation-error'>
@@ -165,7 +282,7 @@ const ContactMe = () => {
             </div>
 
             <div className='form-group'>
-              <label htmlFor='email' className='form-label'>Email *</label>
+              <label htmlFor='email' className='form-label'>{texts.form.labels.email}</label>
               <input
                 type='email'
                 id='email'
@@ -173,7 +290,7 @@ const ContactMe = () => {
                 className={`form-input ${validationErrors.email ? 'error' : ''}`}
                 value={formData.email}
                 onChange={handleChange}
-                placeholder='your.email@example.com'
+                placeholder={texts.form.placeholders.email}
               />
               {validationErrors.email && (
                 <div className='validation-error'>
@@ -184,7 +301,7 @@ const ContactMe = () => {
             </div>
 
             <div className='form-group'>
-              <label htmlFor='subject' className='form-label'>Subject *</label>
+              <label htmlFor='subject' className='form-label'>{texts.form.labels.subject}</label>
               <select
                 id='subject'
                 name='subject'
@@ -192,12 +309,11 @@ const ContactMe = () => {
                 value={formData.subject}
                 onChange={handleChange}
               >
-                <option value=''>Select a subject</option>
-                <option value='Collaboration'>Collaboration</option>
-                <option value='Research Inquiry'>Research Inquiry</option>
-                <option value='Job Opportunity'>Job Opportunity</option>
-                <option value='Speaking Engagement'>Speaking Engagement</option>
-                <option value='Other'>Other</option>
+                {texts.form.subjectOptions.map((option) => (
+                  <option key={option.value || 'empty'} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
               </select>
               {validationErrors.subject && (
                 <div className='validation-error'>
@@ -208,14 +324,14 @@ const ContactMe = () => {
             </div>
 
             <div className='form-group'>
-              <label htmlFor='message' className='form-label'>Message *</label>
+              <label htmlFor='message' className='form-label'>{texts.form.labels.message}</label>
               <textarea
                 id='message'
                 name='message'
                 className={`form-textarea ${validationErrors.message ? 'error' : ''}`}
                 value={formData.message}
                 onChange={handleChange}
-                placeholder='Tell me about your project or inquiry...'
+                placeholder={texts.form.placeholders.message}
                 rows='6'
               />
               {validationErrors.message && (
@@ -234,22 +350,22 @@ const ContactMe = () => {
               {isSubmitting ? (
                 <span className='submitting-text'>
                   <span className='spinner'></span>
-                  Sending...
+                  {texts.form.sending}
                 </span>
               ) : (
-                'Send Message'
+                texts.form.submit
               )}
             </button>
 
-            {submitStatus === 'success' && (
+            {submitStatus === 'success' && submitMessageKey && (
               <div className='success-message'>
-                ✅ {submitMessage}
+                ✅ {texts.feedback[submitMessageKey]}
               </div>
             )}
 
-            {submitStatus === 'error' && (
+            {submitStatus === 'error' && submitMessageKey && (
               <div className='error-message'>
-                ❌ {submitMessage}
+                ❌ {texts.feedback[submitMessageKey]}
               </div>
             )}
           </form>
