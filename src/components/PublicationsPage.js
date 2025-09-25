@@ -36,6 +36,9 @@ const PublicationsPage = () => {
     navigator.clipboard.writeText(doi);
   };
 
+  // Sort publications by most recent year first
+  const sortedPublications = [...publicationsData].sort((a, b) => (b.year || 0) - (a.year || 0));
+
   return (
     <div className='publications-page'>
       <Layout active='publications' showBackLink>
@@ -47,7 +50,7 @@ const PublicationsPage = () => {
 
         <div className='publications-content'>
           <div className='publications-grid'>
-            {publicationsData.map((publication) => (
+            {sortedPublications.map((publication) => (
               <div key={publication.id} className='publication-card-horizontal'>
                 <div className='publication-cover'>
                     <div className='publication-cover-text'>

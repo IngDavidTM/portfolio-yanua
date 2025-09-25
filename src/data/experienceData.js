@@ -70,16 +70,29 @@ const experiences = [
     },
   },
   {
-    id: 'udla-current',
-    start: { month: 1, year: 2022 },
+    id: 'udla-research-assistant-2022-current',
+    start: { month: 0, year: 2022 },
     end: null,
     title: {
-      en: 'Professional practices in the University of the Americas Research Laboratories',
-      es: 'Prácticas profesionales en los laboratorios de investigación de la Universidad de Las Américas',
+      en: 'University of the Americas – Research Assistant',
+      es: 'Universidad de Las Américas – Asistente de investigación',
     },
     description: {
-      en: "Molecular and bioinformatic orchid's identification from Ecuadorian Andes and Amazon. Cattle genotyping. Quito, Ecuador",
-      es: 'Identificación molecular y bioinformática de orquídeas de los Andes y la Amazonía ecuatoriana. Genotipificación de bovinos. Quito, Ecuador',
+      en: 'Sample processing, molecular diagnostics, epidemiological analysis, field coordination. Quito, Ecuador',
+      es: 'Procesamiento de muestras, diagnóstico molecular, análisis epidemiológico, coordinación de campo. Quito, Ecuador',
+    },
+  },
+  {
+    id: 'udla-teaching-assistant-2025-current',
+    start: { month: 2, year: 2025 },
+    end: null,
+    title: {
+      en: 'University of the Americas – Teaching Assistant, Cell and Molecular Biology II',
+      es: 'Universidad de Las Américas – Ayudante de cátedra, Biología Celular y Molecular II',
+    },
+    description: {
+      en: 'Responsible for practical classes. Quito, Ecuador',
+      es: 'Responsable de clases prácticas. Quito, Ecuador',
     },
   },
 ];
@@ -90,18 +103,29 @@ const formatMonthYear = (lang, { month, year }) => {
 };
 
 const getExperienceData = (language = 'en') =>
-  experiences.map((item) => ({
-    id: item.id,
-    start: item.start,
-    end: item.end,
-    from: formatMonthYear('en', item.start), // for calculations
-    to: item.end ? formatMonthYear('en', item.end) : 'Present',
-    fromLabel: formatMonthYear(language, item.start),
-    toLabel: item.end ? formatMonthYear(language, item.end) : language === 'es' ? 'Actualidad' : 'Present',
-    isCurrent: !item.end,
-    title: item.title[language] || item.title.en,
-    description: item.description[language] || item.description.en,
-  }));
+  experiences
+    .slice()
+    // Sort by most recent end date first; ongoing (null end) comes first.
+    .sort((a, b) => {
+      const endA = a.end ? a.end.year * 12 + a.end.month : Infinity;
+      const endB = b.end ? b.end.year * 12 + b.end.month : Infinity;
+      if (endA !== endB) return endB - endA;
+      // If same end (including both ongoing), sort by most recent start
+      const startA = a.start.year * 12 + a.start.month;
+      const startB = b.start.year * 12 + b.start.month;
+      return startB - startA;
+    })
+    .map((item) => ({
+      id: item.id,
+      start: item.start,
+      end: item.end,
+      from: formatMonthYear('en', item.start), // for calculations
+      to: item.end ? formatMonthYear('en', item.end) : 'Present',
+      fromLabel: formatMonthYear(language, item.start),
+      toLabel: item.end ? formatMonthYear(language, item.end) : language === 'es' ? 'Actualidad' : 'Present',
+      isCurrent: !item.end,
+      title: item.title[language] || item.title.en,
+      description: item.description[language] || item.description.en,
+    }));
 
 export default getExperienceData;
-
